@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TeamDetailsActivity">
+
+    <TextView
+        android:id="@+id/txtVTeamDetails_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team By USERNAME"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/lvVTeamDetails_team"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="37dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="73dp"
+        android:text="Average Rating:"
+        app:layout_constraintBottom_toTopOf="@+id/textView21"
+        app:layout_constraintStart_toStartOf="@+id/btnVTeamDetails_back" />
+
+    <TextView
+        android:id="@+id/txtVTeamDetails_average"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="#.##"
+        app:layout_constraintEnd_toEndOf="@+id/btnVTeamDetails_review"
+        app:layout_constraintTop_toBottomOf="@+id/lvVTeamDetails_team" />
+
+    <Button
+        android:id="@+id/btnVTeamDetails_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="23dp"
+        android:text="Go Back"
+        app:layout_constraintBottom_toTopOf="@+id/textView21"
+        app:layout_constraintEnd_toStartOf="@+id/btnVTeamDetails_battle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <Button
+        android:id="@+id/btnVTeamDetails_review"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="16dp"
+        android:text="Leave a Review"
+        app:layout_constraintBottom_toBottomOf="@+id/btnVTeamDetails_battle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnVTeamDetails_battle"
+        app:layout_constraintTop_toBottomOf="@+id/txtVTeamDetails_average" />
+
+    <Button
+        android:id="@+id/btnVTeamDetails_battle"
+        android:layout_width="111dp"
+        android:layout_height="73dp"
+        android:text="Battle!"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnVTeamDetails_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="166dp"
+        android:text="Reviews:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btnVTeamDetails_back" />
+
+    <ListView
+        android:id="@+id/lvVTeamDetails_reviews"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+</androidx.constraintlayout.widget.ConstraintLayout>

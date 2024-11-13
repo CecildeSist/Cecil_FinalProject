@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LeaveReviewActivity">
+
+    <TextView
+        android:id="@+id/txtVLeaveReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Review for Team by USERNAME"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtVLeaveReview_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekVLeaveReview_score"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="19dp"
+        android:max="5"
+        app:layout_constraintBottom_toTopOf="@+id/btnVLeaveReview_review"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVLeaveReview_number" />
+
+    <Button
+        android:id="@+id/btnVLeaveReview_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leave Review"
+        app:layout_constraintBottom_toTopOf="@+id/btnVLeaveReview_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekVLeaveReview_score" />
+
+    <Button
+        android:id="@+id/btnVLeaveReview_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="474dp"
+        android:text="Go Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnVLeaveReview_review"
+        app:layout_constraintTop_toBottomOf="@+id/btnVLeaveReview_review" />
+
+    <TextView
+        android:id="@+id/txtVLeaveReview_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:text="#"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/seekVLeaveReview_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVLeaveReview" />
+</androidx.constraintlayout.widget.ConstraintLayout>
