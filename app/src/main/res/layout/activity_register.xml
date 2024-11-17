@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#253BF8"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -12,7 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
         android:text="Register"
+        android:textColor="#FECF40"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +29,8 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#80FFD040"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -38,6 +43,8 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#80FFD040"
         app:layout_constraintStart_toStartOf="@+id/etVRegister_username"
         app:layout_constraintTop_toBottomOf="@+id/etVRegister_username" />
 
@@ -45,7 +52,8 @@
         android:id="@+id/txtVRegister_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif-black"
         android:text="Error: Username already in use"
         android:textColor="#FF4343"
         app:layout_constraintStart_toStartOf="@+id/etVRegister_password"
@@ -55,16 +63,23 @@
         android:id="@+id/btnVRegister_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:backgroundTint="#FECF40"
         android:text="Register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/txtVRegister_error"
         app:layout_constraintTop_toBottomOf="@+id/txtVRegister_error" />
 
     <Button
         android:id="@+id/btnVRegister_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FDCE40"
         android:text="Go Back"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/btnVRegister_register"
         app:layout_constraintTop_toBottomOf="@+id/btnVRegister_register" />
 </androidx.constraintlayout.widget.ConstraintLayout>

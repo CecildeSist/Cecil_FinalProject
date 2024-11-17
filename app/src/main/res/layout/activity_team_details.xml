@@ -5,101 +5,72 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#253BF8"
     tools:context=".TeamDetailsActivity">
 
     <TextView
         android:id="@+id/txtVTeamDetails_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Team By USERNAME"
+        android:fontFamily="sans-serif-black"
+        android:text="TEAM NAME Team by USERNAME"
+        android:textColor="#FE5151"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_team"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="51dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <ListView
         android:id="@+id/lvVTeamDetails_team"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="37dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="409dp"
+        android:layout_height="390dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="43dp" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="73dp"
         android:text="Average Rating:"
-        app:layout_constraintBottom_toTopOf="@+id/textView21"
-        app:layout_constraintStart_toStartOf="@+id/btnVTeamDetails_back" />
+        android:textColor="#FDCE40"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="451dp" />
 
     <TextView
         android:id="@+id/txtVTeamDetails_average"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:fontFamily="sans-serif-medium"
         android:text="#.##"
-        app:layout_constraintEnd_toEndOf="@+id/btnVTeamDetails_review"
-        app:layout_constraintTop_toBottomOf="@+id/lvVTeamDetails_team" />
-
-    <Button
-        android:id="@+id/btnVTeamDetails_back"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="23dp"
-        android:text="Go Back"
-        app:layout_constraintBottom_toTopOf="@+id/textView21"
-        app:layout_constraintEnd_toStartOf="@+id/btnVTeamDetails_battle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-    <Button
-        android:id="@+id/btnVTeamDetails_review"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginEnd="16dp"
-        android:text="Leave a Review"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVTeamDetails_battle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnVTeamDetails_battle"
-        app:layout_constraintTop_toBottomOf="@+id/txtVTeamDetails_average" />
-
-    <Button
-        android:id="@+id/btnVTeamDetails_battle"
-        android:layout_width="111dp"
-        android:layout_height="73dp"
-        android:text="Battle!"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnVTeamDetails_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#FDCE40"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="451dp" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="166dp"
+        android:fontFamily="sans-serif-black"
         android:text="Reviews:"
+        android:textColor="#FE5151"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btnVTeamDetails_back" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="544dp" />
 
     <ListView
         android:id="@+id/lvVTeamDetails_reviews"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        android:layout_width="409dp"
+        android:layout_height="164dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="565dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="129dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#FECF40"
+        android:scaleX=".8"
+        android:scaleY=".8"
+        app:srcCompat="@drawable/battlebutton"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="486dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

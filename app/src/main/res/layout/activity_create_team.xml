@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#253BF8"
     tools:context=".CreateTeamActivity">
 
     <TextView
@@ -12,8 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
         android:text="Create a Team"
+        android:textColor="#FE5151"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,27 +28,34 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginBottom="2dp"
+        android:fontFamily="sans-serif-black"
         android:text="Pokémon 1"
+        android:textColor="#FDCE40"
         app:layout_constraintBottom_toTopOf="@+id/spnVCreateTeam_pkmn1"
-        app:layout_constraintStart_toStartOf="@+id/spnVCreateTeam_pkmn1" />
+        app:layout_constraintStart_toStartOf="@+id/spnVCreateTeam_pkmn1"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Spinner
         android:id="@+id/spnVCreateTeam_pkmn1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+        android:fontFamily="sans-serif-black"
         android:text="Pokémon 2"
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVCreateTeam_pkmn2"
         app:layout_constraintStart_toStartOf="@+id/spnVCreateTeam_pkmn1"
         app:layout_constraintTop_toBottomOf="@+id/spnVCreateTeam_pkmn1" />
 
@@ -53,18 +64,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="18dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="sans-serif-black"
         android:text="Pokémon 3"
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVCreate_pkmn3"
         app:layout_constraintStart_toStartOf="@+id/spnVCreateTeam_pkmn2"
         app:layout_constraintTop_toBottomOf="@+id/spnVCreateTeam_pkmn2" />
 
@@ -73,8 +89,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="2dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -84,17 +101,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-black"
         android:text="Pokémon 4"
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVCreate_pkmn4"
         app:layout_constraintStart_toStartOf="@+id/spnVCreate_pkmn3"
         app:layout_constraintTop_toBottomOf="@+id/spnVCreate_pkmn3" />
 
     <Spinner
-        android:id="@+id/spinner4"
+        android:id="@+id/spnVCreate_pkmn4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -104,16 +126,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+        android:fontFamily="sans-serif-black"
         android:text="Pokémon 5"
-        app:layout_constraintStart_toStartOf="@+id/spinner4"
-        app:layout_constraintTop_toBottomOf="@+id/spinner4" />
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVCreateTeam_pkmn5"
+        app:layout_constraintStart_toStartOf="@+id/spnVCreate_pkmn4"
+        app:layout_constraintTop_toBottomOf="@+id/spnVCreate_pkmn4" />
 
     <Spinner
-        android:id="@+id/spnVCreateTeam_pkmn6"
+        android:id="@+id/spnVCreateTeam_pkmn5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -123,37 +151,89 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="sans-serif-black"
         android:text="Pokémon 6"
-        app:layout_constraintStart_toStartOf="@+id/spnVCreateTeam_pkmn6"
-        app:layout_constraintTop_toBottomOf="@+id/spnVCreateTeam_pkmn6" />
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVCreate_pkmn6"
+        app:layout_constraintStart_toStartOf="@+id/spnVCreateTeam_pkmn5"
+        app:layout_constraintTop_toBottomOf="@+id/spnVCreateTeam_pkmn5" />
 
     <Spinner
-        android:id="@+id/spinner6"
+        android:id="@+id/spnVCreate_pkmn6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="2dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/etVCreate_teamName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/etVCreate_teamName"
+        android:layout_width="211dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:hint="Team Name"
+        android:inputType="text"
+        android:textColorHint="#81FD5151"
+        app:layout_constraintBottom_toTopOf="@+id/btnVCreateTeam_createTeam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spnVCreate_pkmn6" />
+
+    <TextView
+        android:id="@+id/txtVCreate_errorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Error: Please name your team so your Pokémon have a sense of comradery!"
+        android:textAlignment="center"
+        android:textColor="#FD5151"
+        app:layout_constraintStart_toStartOf="@+id/txtVCreate_errorSix"
+        app:layout_constraintTop_toTopOf="@+id/txtVCreate_errorSix" />
 
     <Button
         android:id="@+id/btnVCreateTeam_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="#FCCD40"
         android:text="Go Back"
-        app:layout_constraintStart_toStartOf="@+id/spinner6"
-        app:layout_constraintTop_toBottomOf="@+id/spinner6" />
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtVCreate_errorSix"
+        app:layout_constraintStart_toStartOf="@+id/btnVCreateTeam_createTeam"
+        app:layout_constraintTop_toBottomOf="@+id/btnVCreateTeam_createTeam" />
 
     <Button
         android:id="@+id/btnVCreateTeam_createTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="21dp"
+        android:backgroundTint="#FDCE40"
         android:text="Create Team"
-        app:layout_constraintEnd_toEndOf="@+id/spinner6"
-        app:layout_constraintTop_toBottomOf="@+id/spinner6" />
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnVCreateTeam_back"
+        app:layout_constraintStart_toStartOf="@+id/etVCreate_teamName"
+        app:layout_constraintTop_toBottomOf="@+id/etVCreate_teamName" />
+
+    <TextView
+        android:id="@+id/txtVCreate_errorSix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="235dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Error: Please select six Pokémon so your team members have lots of friends!"
+        android:textAlignment="center"
+        android:textColor="#FD5151"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVCreateTeam_back" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,55 +5,54 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#253BF8"
     tools:context=".LeaveReviewActivity">
 
     <TextView
         android:id="@+id/txtVLeaveReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Review for Team by USERNAME"
+        android:layout_marginBottom="54dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Review for TEAMNAME Team by USERNAME"
         android:textAlignment="center"
+        android:textColor="#FE5151"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/txtVLeaveReview_number"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <SeekBar
-        android:id="@+id/seekVLeaveReview_score"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="19dp"
-        android:max="5"
-        app:layout_constraintBottom_toTopOf="@+id/btnVLeaveReview_review"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVLeaveReview_number" />
 
     <Button
         android:id="@+id/btnVLeaveReview_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FDCE40"
         android:text="Leave Review"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btnVLeaveReview_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekVLeaveReview_score" />
 
-    <Button
-        android:id="@+id/btnVLeaveReview_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="474dp"
-        android:text="Go Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnVLeaveReview_review"
-        app:layout_constraintTop_toBottomOf="@+id/btnVLeaveReview_review" />
+    <SeekBar
+        android:id="@+id/seekVLeaveReview_score"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="20dp"
+        android:max="5"
+        android:progress="0"
+        android:progressBackgroundTint="#FFFFFF"
+        android:progressTint="#FC5151"
+        android:thumbTint="#FD5151"
+        app:layout_constraintBottom_toTopOf="@+id/btnVLeaveReview_review"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVLeaveReview_number" />
 
     <TextView
         android:id="@+id/txtVLeaveReview_number"
@@ -61,9 +60,25 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="13dp"
         android:text="#"
+        android:textColor="#FD5151"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/seekVLeaveReview_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVLeaveReview" />
+
+    <Button
+        android:id="@+id/btnVLeaveReview_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="435dp"
+        android:backgroundTint="#FDCE40"
+        android:text="Go Back"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btnVLeaveReview_review"
+        app:layout_constraintTop_toBottomOf="@+id/btnVLeaveReview_review" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

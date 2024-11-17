@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#253BF8"
     tools:context=".SearchActivity">
 
     <TextView
@@ -12,8 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
         android:text="Team Search"
+        android:textColor="#FE5151"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +27,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+        android:layout_marginBottom="2dp"
         android:text="Team Creator"
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVSearch_usernames"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -33,6 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -42,6 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Has Pokémon"
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVSearch_pokemon"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/spnVSearch_usernames" />
 
@@ -51,6 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -60,7 +73,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="14dp"
+        android:layout_marginBottom="2dp"
         android:text="Has Type"
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/spnVSearch_type"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/spnVSearch_pokemon" />
 
@@ -70,6 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -80,6 +98,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:text="Average Rating Lower Bound"
+        android:textColor="#FECF40"
+        app:layout_constraintBottom_toTopOf="@+id/etVSearch_lower"
         app:layout_constraintStart_toStartOf="@+id/etVSearch_lower"
         app:layout_constraintTop_toBottomOf="@+id/spnVSearch_type" />
 
@@ -90,53 +110,66 @@
         android:ems="10"
         android:inputType="number"
         android:singleLine="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintStart_toStartOf="@+id/etVSearch_upper"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="2dp"
         android:text="Average Rating Upper Bound"
-        app:layout_constraintEnd_toEndOf="@+id/etVSearch_lower"
+        android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/etVSearch_upper"
+        app:layout_constraintStart_toStartOf="@+id/etVSearch_lower"
         app:layout_constraintTop_toBottomOf="@+id/etVSearch_lower" />
 
     <EditText
         android:id="@+id/etVSearch_upper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="4dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/etVSearch_lower"
+        app:layout_constraintBottom_toTopOf="@+id/imgbtnVSearch_search"
+        app:layout_constraintEnd_toEndOf="@+id/imgbtnVSearch_search"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-    <Button
-        android:id="@+id/btnVSearch_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etVSearch_upper" />
 
     <Button
         android:id="@+id/btnVSearch_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:backgroundTint="#FDCE40"
         android:text="Go Back"
-        app:layout_constraintStart_toStartOf="@+id/lvVSearch"
-        app:layout_constraintTop_toBottomOf="@+id/etVSearch_upper" />
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/lvVSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtnVSearch_search" />
 
     <ListView
         android:id="@+id/lvVSearch"
         android:layout_width="0dp"
-        android:layout_height="383dp"
-        android:layout_marginBottom="1dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVSearch_back" />
+
+    <ImageButton
+        android:id="@+id/imgbtnVSearch_search"
+        android:layout_width="259dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#FDCE40"
+        android:scaleX=".6"
+        android:scaleY=".6"
+        app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etVSearch_upper"
+        app:srcCompat="@drawable/searchbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

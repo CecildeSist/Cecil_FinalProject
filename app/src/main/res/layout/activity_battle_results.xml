@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#253BF7"
     tools:context=".BattleResultsActivity">
 
     <TextView
@@ -12,82 +13,100 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
         android:text="CURRENT USER's team has:"
+        android:textColor="#FD5151"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/txtVBattleResults_currentUserTeam"
         app:layout_constraintStart_toStartOf="@+id/txtVBattleResults_currentUserTeam"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtVBattleResults_currentUserTeam"
-        android:layout_width="0dp"
+        android:layout_width="379dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="PKMN 1, PKMN 2, PKMN 3, PKMN 4, PKMN 5, and PKMN 6"
+        android:textColor="#FCCD40"
         app:layout_constraintBottom_toTopOf="@+id/txtVBattleResults_currentUserBST"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtVBattleResults_currentUserBST"
+        app:layout_constraintStart_toEndOf="@+id/txtVBattleResults_currentUserBST"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/txtVBattleResults_currentUserBST"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="sans-serif-medium"
         android:text="Average Base Stat Total: #"
+        android:textColor="#FC5151"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtVBattleResults_chosenUser"
-        app:layout_constraintStart_toStartOf="@+id/txtVBattleResults_currentUserTeam"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVBattleResults_currentUserTeam" />
 
     <TextView
         android:id="@+id/txtVBattleResults_chosenUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:text="CHOSEN USER's team has:"
+        android:textColor="#FC5151"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/txtVBattleResults_chosenUserTeam"
         app:layout_constraintStart_toStartOf="@+id/txtVBattleResults_chosenUserTeam"
         app:layout_constraintTop_toBottomOf="@+id/txtVBattleResults_currentUserBST" />
 
     <TextView
         android:id="@+id/txtVBattleResults_chosenUserTeam"
-        android:layout_width="0dp"
+        android:layout_width="379dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="PKMN 1, PKMN 2, PKMN 3, PKMN 4, PKMN 5, and PKMN 6"
+        android:textColor="#FECF40"
         app:layout_constraintBottom_toTopOf="@+id/txtVBattleResults_chosenUserBST"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtVBattleResults_chosenUserBST"
+        app:layout_constraintStart_toEndOf="@+id/txtVBattleResults_chosenUserBST"
         app:layout_constraintTop_toBottomOf="@+id/txtVBattleResults_chosenUser" />
 
     <TextView
         android:id="@+id/txtVBattleResults_chosenUserBST"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="23dp"
+        android:fontFamily="sans-serif-medium"
         android:text="Average Base Stat Total: #"
+        android:textColor="#FD5151"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtVBattleResults_results"
-        app:layout_constraintStart_toStartOf="@+id/txtVBattleResults_chosenUserTeam"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVBattleResults_chosenUserTeam" />
 
     <TextView
         android:id="@+id/txtVBattleResults_results"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="72dp"
+        android:fontFamily="sans-serif-medium"
         android:text="RESULTS"
         android:textAlignment="center"
+        android:textColor="#FCCD40"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btnVBattleResults_ok"
-        app:layout_constraintStart_toStartOf="@+id/btnVBattleResults_ok"
+        app:layout_constraintEnd_toEndOf="@+id/txtVBattleResults_chosenUserBST"
+        app:layout_constraintStart_toEndOf="@+id/txtVBattleResults_chosenUserBST"
         app:layout_constraintTop_toBottomOf="@+id/txtVBattleResults_chosenUserBST" />
 
     <Button
         android:id="@+id/btnVBattleResults_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="432dp"
-        android:text="Okay"
+        android:layout_marginBottom="369dp"
+        android:backgroundTint="#FCCD40"
+        android:text="OK"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#253BF8"
     tools:context=".SelectDeleteActivity">
 
     <TextView
@@ -15,8 +16,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="23dp"
+        android:fontFamily="sans-serif-black"
         android:text="USERNAME, please choose a team to delete."
         android:textAlignment="center"
+        android:textColor="#FE5151"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/spnVSelectDelete_teams"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +33,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="66dp"
         android:layout_marginEnd="1dp"
+        android:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,8 +42,13 @@
         android:id="@+id/btnVSelectDelete_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:text="Delete"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FDCE40"
+        android:fontFamily="sans-serif-black"
+        android:text="DELETE"
+        android:textColor="#FE5151"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/btnVSelectDelete_back"
         app:layout_constraintTop_toBottomOf="@+id/spnVSelectDelete_teams" />
 
@@ -47,7 +56,10 @@
         android:id="@+id/btnVSelectDelete_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FCCD40"
         android:text="Go Back"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnVSelectDelete_delete" />
