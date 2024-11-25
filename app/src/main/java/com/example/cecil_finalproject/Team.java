@@ -5,15 +5,17 @@ import android.net.IpSecAlgorithm;
 import java.io.Serializable;
 
 public class Team implements Serializable {
-    String teamTitle, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
+    Integer teamID;
+    String userTrainer, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
     Float averageTotal;
 
     public Team() {
 
     }
 
-    public Team(String tT, Float aT, String pA, String pB,String pC, String pD, String pE, String pF) {
-        teamTitle = tT;
+    public Team(Integer tID, Float aT, String uT, String pA, String pB,String pC, String pD, String pE, String pF) {
+        teamID = tID;
+        userTrainer = uT;
         averageTotal = aT;
         pkmnA = pA;
         pkmnB = pB;
@@ -23,12 +25,20 @@ public class Team implements Serializable {
         pkmnF = pF;
     }
 
-    public String getTeamTitle() {
-        return teamTitle;
+    public Integer getTeamID() {
+        return teamID;
     }
 
-    public void setTeamTitle(String teamTitle) {
-        this.teamTitle = teamTitle;
+    public void setTeamID(Integer teamID) {
+        this.teamID = teamID;
+    }
+
+    public String getUserTrainer() {
+        return userTrainer;
+    }
+
+    public void setUserTrainer(String userTrainer) {
+        this.userTrainer = userTrainer;
     }
 
     public String getPkmnA() {

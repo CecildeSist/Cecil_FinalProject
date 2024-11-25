@@ -64,13 +64,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#FECF40"
         android:text="Register"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/txtVRegister_error"
-        app:layout_constraintTop_toBottomOf="@+id/txtVRegister_error" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVRegister_errorEmpty" />
 
     <Button
         android:id="@+id/btnVRegister_back"
@@ -80,6 +81,17 @@
         android:text="Go Back"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/btnVRegister_register"
+        app:layout_constraintEnd_toEndOf="@+id/btnVRegister_register"
         app:layout_constraintTop_toBottomOf="@+id/btnVRegister_register" />
+
+    <TextView
+        android:id="@+id/txtVRegister_errorEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Error: Username and/or password empty"
+        android:textColor="#FE4343"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVRegister_error" />
 </androidx.constraintlayout.widget.ConstraintLayout>

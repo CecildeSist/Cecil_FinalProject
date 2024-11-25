@@ -6,6 +6,7 @@ package com.example.cecil_finalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,9 +41,14 @@ public class MainActivity extends AppCompatActivity {
         txtJMain_error.setVisibility(View.INVISIBLE);
 
         dbHelper = new DatabaseHelper(this);
+        dbHelper.initAllTables();
+
+        //Test statement
+        Log.d("Num users:", dbHelper.countRecordsFromTable(DatabaseHelper.users_table_name) + "");
 
         //Call button listeners
         mainLogInBtnListener();
+        //WORKS
         mainRegisterBtnListener();
     }
 
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 String logU = etJMain_u.getText().toString();
                 String logP = etJMain_p.getText().toString();
                 boolean isLogInValid = dbHelper.logInValid(logU, logP);
-                if (isLogInValid == false) {
+                if (!isLogInValid) {
                     txtJMain_error.setVisibility(View.VISIBLE);
                 }
                 else {
@@ -66,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //WORKS
     public void mainRegisterBtnListener() {
         btnJMain_register.setOnClickListener(new View.OnClickListener() {
             @Override
