@@ -17,7 +17,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="23dp"
         android:fontFamily="sans-serif-black"
-        android:text="USERNAME, please choose a team to delete."
+        android:text="USERNAME, what do you want to delete?"
         android:textAlignment="center"
         android:textColor="#FE5151"
         android:textSize="20sp"

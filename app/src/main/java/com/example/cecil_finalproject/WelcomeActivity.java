@@ -50,6 +50,7 @@ public class WelcomeActivity extends AppCompatActivity {
         //Call button click listeners
         createListener();
         deleteListener();
+        searchListener();
 
         //Fill welcomeTeamsList if empty
         if (welcomeTeamsList.isEmpty()) {
@@ -58,6 +59,9 @@ public class WelcomeActivity extends AppCompatActivity {
             Team teamTwo = new Team(2, 410.833F, "Mephistopheles", "Mister Mime", "Scyther", "Venomoth", "Parasect", "Mewtwo", "Magneton");
             welcomeTeamsList.add(teamTwo);
         }
+
+        //Add team to array list if passed from CreateTeamActivity NOTE TO SELF not done
+
 
     }
 

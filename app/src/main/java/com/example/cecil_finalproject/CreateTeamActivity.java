@@ -1,5 +1,6 @@
 package com.example.cecil_finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,52 @@ public class CreateTeamActivity extends AppCompatActivity {
 
         btnJCreate_create = findViewById(R.id.btnVCreateTeam_createTeam);
         btnJCreate_back = findViewById(R.id.btnVCreateTeam_back);
-        
+
+        Intent cameFrom = getIntent();
+
+        //Change the TextView at the top to display the current user's username
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+        txtJCreate_header.setText(loggedUser +"'s New Team");
+
+        //Call button listeners NOTE TO SELF not done
+        createTeamListener();
+        backListener();
+    }
+
+    private void createTeamListener() {
+        btnJCreate_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent createToWelcome = new Intent(CreateTeamActivity.this, WelcomeActivity.class);
+                createToWelcome.putExtra("Username:", loggedUser);
+
+                //Create new team
+                //Step 1: declare objects added to team data
+                Integer teamID;
+                String trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
+                Float averageBST;
+
+                //Step 2: Assign value to the objects NOTE TO SELF not done
+            }
+        });
+    }
+
+    private void backListener() {
+        btnJCreate_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent createToWelcome = new Intent(CreateTeamActivity.this, WelcomeActivity.class);
+                createToWelcome.putExtra("Username:", loggedUser);
+                startActivity(createToWelcome);
+            }
+        });
     }
 }
