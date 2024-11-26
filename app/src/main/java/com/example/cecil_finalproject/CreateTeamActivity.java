@@ -70,6 +70,9 @@ public class CreateTeamActivity extends AppCompatActivity {
                 Float averageBST;
 
                 //Step 2: Assign value to the objects NOTE TO SELF not done
+                Team newTeam = new Team();
+
+                //Step 3: put team in putExtra under "Team:" and create function to update the listview based on what's in the database NOTE TO SELF not done
             }
         });
     }

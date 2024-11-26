@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/txtVBaChoo_userPlease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
@@ -43,7 +43,7 @@
         android:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVBaChoo_userPlease" />
 
     <Button
         android:id="@+id/btnVBattleChoose_back"
@@ -54,11 +54,11 @@
         android:text="Go Back"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/imgBtnVWelcome_battle"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnVWelcome_battle" />
+        app:layout_constraintStart_toStartOf="@+id/imgBtnVBaChoo_battle"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnVBaChoo_battle" />
 
     <ImageButton
-        android:id="@+id/imgBtnVWelcome_battle"
+        android:id="@+id/imgBtnVBaChoo_battle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FDCE40"

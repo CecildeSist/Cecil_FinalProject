@@ -21,13 +21,13 @@
         android:textAlignment="center"
         android:textColor="#FE5151"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/spnVSelectDelete_teams"
+        app:layout_constraintBottom_toBottomOf="@+id/spnVSelectDelete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spnVSelectDelete_teams"
+        android:id="@+id/spnVSelectDelete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -39,18 +39,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnVSelectDelete_delete"
+        android:id="@+id/btnVSelectDelete_proceed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="#FDCE40"
         android:fontFamily="sans-serif-black"
-        android:text="DELETE"
+        android:text="Proceed"
         android:textColor="#FE5151"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/btnVSelectDelete_back"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSelectDelete_teams" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spnVSelectDelete" />
 
     <Button
         android:id="@+id/btnVSelectDelete_back"
@@ -60,7 +60,6 @@
         android:text="Go Back"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVSelectDelete_delete" />
+        app:layout_constraintEnd_toEndOf="@+id/btnVSelectDelete_proceed"
+        app:layout_constraintTop_toBottomOf="@+id/btnVSelectDelete_proceed" />
 </androidx.constraintlayout.widget.ConstraintLayout>
