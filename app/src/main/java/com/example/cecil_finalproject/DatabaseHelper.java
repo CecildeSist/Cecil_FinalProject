@@ -1,5 +1,6 @@
 package com.example.cecil_finalproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -255,5 +256,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + users_table_name + " (userID, username, password) VALUES (" + newUName + "', '" + newPWord + "');");
         db.close();
         Log.d("new number of users in database:", countRecordsFromTable(users_table_name) + "");
+    }
+
+    @SuppressLint("Range")
+    public float teamAvgFloat (String pokemonA, String pokemonB, String pokemonC, String pokemonD, String pokemonE, String pokemonF) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Integer statsA, statsB, statsC, statsD, statsE, statsF;
+        statsA = 0;
+        statsB = 0;
+        statsC = 0;
+        statsD = 0;
+        statsE = 0;
+        statsF = 0;
+
+        String selectStatement = "SELECT baseStatTotal FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokemonA + "';";
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                statsA = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+            }
+            while (cursor.moveToNext());
+        }
+        selectStatement = "SELECT baseStatTotal FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokemonB + "';";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                statsB = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+            }
+            while (cursor.moveToNext());
+        }
+        selectStatement = "SELECT baseStatTotal FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokemonC + "';";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                statsC = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+            }
+            while (cursor.moveToNext());
+        }
+        selectStatement = "SELECT baseStatTotal FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokemonD + "';";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                statsD = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+            }
+            while (cursor.moveToNext());
+        }
+        selectStatement = "SELECT baseStatTotal FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokemonE + "';";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                statsE = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+            }
+            while (cursor.moveToNext());
+        }
+        selectStatement = "SELECT baseStatTotal FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokemonF + "';";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                statsF = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+            }
+            while (cursor.moveToNext());
+        }
+        float average = (float) (statsA + statsB + statsC + statsD + statsE + statsF) / 6;
+        db.close();
+
+        return average;
     }
 }

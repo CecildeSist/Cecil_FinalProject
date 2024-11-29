@@ -22,8 +22,16 @@ public class CreateTeamActivity extends AppCompatActivity {
     Spinner pkmn1Spin, pkmn2Spin, pkmn3Spin, pkmn4Spin, pkmn5Spin, pkmn6Spin;
     Button btnJCreate_create, btnJCreate_back;
 
+    DatabaseHelper db = new DatabaseHelper(this);
+
     ArrayList<String> listOfPokemon = new ArrayList<>();
     ArrayAdapter<String> pkmnAdapter;
+    String pokemonA = Team.pkmnName.getPkmnAt(0);
+    String pokemonB = Team.pkmnName.getPkmnAt(0);
+    String pokemonC = Team.pkmnName.getPkmnAt(0);
+    String pokemonD = Team.pkmnName.getPkmnAt(0);
+    String pokemonE = Team.pkmnName.getPkmnAt(0);
+    String pokemonF = Team.pkmnName.getPkmnAt(0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,20 +146,26 @@ public class CreateTeamActivity extends AppCompatActivity {
         pkmn5Spin.setAdapter(pkmnAdapter);
         pkmn6Spin.setAdapter(pkmnAdapter);
 
+        db.initAllTables();
+
         //Call spinner listeners NOTE TO SELF not done
         firstSpinnerListener();
+        secondSpinnerListener();
+        thirdSpinnerListener();
+        fourthSpinnerListener();
+        fifthSpinnerListener();
+        sixthSpinnerListener();
 
         //Call button listeners NOTE TO SELF not done
         createTeamListener();
         backListener();
     }
 
-    //NOTE TO SELF not done
     private void firstSpinnerListener() {
         pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                pokemonA = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -160,6 +174,77 @@ public class CreateTeamActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void secondSpinnerListener() {
+        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonB = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void thirdSpinnerListener() {
+        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonC = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void fourthSpinnerListener() {
+        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonD = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void fifthSpinnerListener() {
+        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonE = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void sixthSpinnerListener() {
+        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonF = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     private void createTeamListener() {
         btnJCreate_create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,9 +262,17 @@ public class CreateTeamActivity extends AppCompatActivity {
                 String trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
                 Float averageBST;
 
-                trainerName = loggedUser;
-
                 //Step 2: Assign value to the objects NOTE TO SELF not done
+                //team id
+                trainerName = loggedUser;
+                pkmnA = pokemonA;
+                pkmnB = pokemonB;
+                pkmnC = pokemonC;
+                pkmnD = pokemonD;
+                pkmnE = pokemonE;
+                pkmnF = pokemonF;
+                averageBST = db.teamAvgFloat(pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
+
                 Team newTeam = new Team();
 
                 //Step 3: put team in putExtra under "Team:" and create function to update the listview based on what's in the database NOTE TO SELF not done
