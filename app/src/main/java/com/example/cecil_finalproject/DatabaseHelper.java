@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String users_table_name = "Users";
     //NOTE TO SELF Android Studio could struggle with the accented "e" in "Pokemon." Use a regular "e" instead!
     private static final String pkmn_table_name = "Pokemon";
-    private static final String teams_table_name = "Teams";
+    public static final String teams_table_name = "Teams";
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
@@ -321,5 +321,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return average;
+    }
+
+    public void addNewTeam(Integer teamID, Float averageBST, String trainerName, String pkmnA, String pkmnB, String pkmnC, String pkmnD, String pkmnE, String pkmnF) {
+        Team newTeam = new Team(teamID, averageBST, trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES ('" + teamID + "','" + averageBST + "','" + trainerName + "','" + pkmnA + "','" + pkmnB + "','" + pkmnC + "','" + pkmnD + "','" + pkmnE + "','" + pkmnF + "');");
+        db.close();
+        Log.d("number of teams in database:", countRecordsFromTable(teams_table_name) + "");
     }
 }

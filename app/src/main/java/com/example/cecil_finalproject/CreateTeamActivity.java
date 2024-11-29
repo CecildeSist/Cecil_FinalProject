@@ -263,7 +263,7 @@ public class CreateTeamActivity extends AppCompatActivity {
                 Float averageBST;
 
                 //Step 2: Assign value to the objects NOTE TO SELF not done
-                //team id
+                teamID = db.countRecordsFromTable("Teams") + 1;
                 trainerName = loggedUser;
                 pkmnA = pokemonA;
                 pkmnB = pokemonB;
@@ -273,9 +273,15 @@ public class CreateTeamActivity extends AppCompatActivity {
                 pkmnF = pokemonF;
                 averageBST = db.teamAvgFloat(pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
 
-                Team newTeam = new Team();
+                Team newTeam = new Team(teamID, averageBST, trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
 
-                //Step 3: put team in putExtra under "Team:" and create function to update the listview based on what's in the database NOTE TO SELF not done
+                //Step 3: put team in putExtra under "Team:"
+                createToWelcome.putExtra("Team:", newTeam);
+
+                //Add newTeam to table of teams
+                db.addNewTeam(teamID, averageBST, trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
+
+                startActivity(createToWelcome);
             }
         });
     }
