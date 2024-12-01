@@ -330,4 +330,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         Log.d("number of teams in database:", countRecordsFromTable(teams_table_name) + "");
     }
+
+    //Calculate the average rating for a team
+    @SuppressLint("Range")
+    public float averageRating (Integer teamID) {
+        String selectStatement = "Select reviewScore from " + reviews_table_name + " Where teamID = " + teamID + ";";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        float averageRating = 2.5F;
+        int totalScore = 0;
+        int numReviews = 0;
+
+        if (cursor.moveToFirst()) {
+            do {
+                totalScore = totalScore + cursor.getInt(cursor.getColumnIndex("reviewScore"));
+                numReviews = numReviews + 1;
+            }
+            while (cursor.moveToNext());
+            averageRating = totalScore/numReviews;
+        }
+        db.close();
+        return averageRating;
+    }
 }
