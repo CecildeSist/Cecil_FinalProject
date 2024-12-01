@@ -390,4 +390,117 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return returnTeams;
     }
+
+    @SuppressLint("Range")
+    public ArrayList<Pokemon> pkmnOnTeam(Integer teamID) {
+        ArrayList<Pokemon> returnPkmn = new ArrayList<>();
+        //Get Pokemon 1
+        String selectStatement = "SELECT pkmnOne FROM " + teams_table_name + " WHERE teamID = " + teamID + ";";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        String pokeName, pkType1, pkType2;
+        Integer pkStats;
+
+        //Add Pokemon to array list
+        if (cursor.moveToFirst()) {
+            pokeName = cursor.getString(cursor.getColumnIndex("pkmnOne"));
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            //Run new query
+            cursor = db.rawQuery(selectStatement, null);
+            if (cursor.moveToFirst()) {
+                pkType1 = cursor.getString(cursor.getColumnIndex("typeOne"));
+                pkType2 = cursor.getString(cursor.getColumnIndex("typeTwo"));
+                pkStats = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+
+                Pokemon pkA = new Pokemon(pokeName, pkType1, pkType2, pkStats);
+                returnPkmn.add(pkA);
+            }
+        }
+        //Repeat for each Pokemon. This is Pokemon B.
+        selectStatement = "SELECT pkmnTwo FROM " + teams_table_name + " WHERE teamID = " + teamID + ";";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            pokeName = cursor.getString(cursor.getColumnIndex("pkmnTwo"));
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            //Run new query
+            cursor = db.rawQuery(selectStatement, null);
+            if (cursor.moveToFirst()) {
+                pkType1 = cursor.getString(cursor.getColumnIndex("typeOne"));
+                pkType2 = cursor.getString(cursor.getColumnIndex("typeTwo"));
+                pkStats = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+
+                Pokemon pkA = new Pokemon(pokeName, pkType1, pkType2, pkStats);
+                returnPkmn.add(pkA);
+            }
+        }
+        //Pokemon C
+        selectStatement = "SELECT pkmnThree FROM " + teams_table_name + " WHERE teamID = " + teamID + ";";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            pokeName = cursor.getString(cursor.getColumnIndex("pkmnThree"));
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            //Run new query
+            cursor = db.rawQuery(selectStatement, null);
+            if (cursor.moveToFirst()) {
+                pkType1 = cursor.getString(cursor.getColumnIndex("typeOne"));
+                pkType2 = cursor.getString(cursor.getColumnIndex("typeTwo"));
+                pkStats = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+
+                Pokemon pkA = new Pokemon(pokeName, pkType1, pkType2, pkStats);
+                returnPkmn.add(pkA);
+            }
+        }
+        //Pokemon D
+        selectStatement = "SELECT pkmnFour FROM " + teams_table_name + " WHERE teamID = " + teamID + ";";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            pokeName = cursor.getString(cursor.getColumnIndex("pkmnFour"));
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            //Run new query
+            cursor = db.rawQuery(selectStatement, null);
+            if (cursor.moveToFirst()) {
+                pkType1 = cursor.getString(cursor.getColumnIndex("typeOne"));
+                pkType2 = cursor.getString(cursor.getColumnIndex("typeTwo"));
+                pkStats = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+
+                Pokemon pkA = new Pokemon(pokeName, pkType1, pkType2, pkStats);
+                returnPkmn.add(pkA);
+            }
+        }
+        //Pokemon E
+        selectStatement = "SELECT pkmnFive FROM " + teams_table_name + " WHERE teamID = " + teamID + ";";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            pokeName = cursor.getString(cursor.getColumnIndex("pkmnFive"));
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            //Run new query
+            cursor = db.rawQuery(selectStatement, null);
+            if (cursor.moveToFirst()) {
+                pkType1 = cursor.getString(cursor.getColumnIndex("typeOne"));
+                pkType2 = cursor.getString(cursor.getColumnIndex("typeTwo"));
+                pkStats = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+
+                Pokemon pkA = new Pokemon(pokeName, pkType1, pkType2, pkStats);
+                returnPkmn.add(pkA);
+            }
+        }
+        //Final Pokemon
+        selectStatement = "SELECT pkmnSix FROM " + teams_table_name + " WHERE teamID = " + teamID + ";";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            pokeName = cursor.getString(cursor.getColumnIndex("pkmnSix"));
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            //Run new query
+            cursor = db.rawQuery(selectStatement, null);
+            if (cursor.moveToFirst()) {
+                pkType1 = cursor.getString(cursor.getColumnIndex("typeOne"));
+                pkType2 = cursor.getString(cursor.getColumnIndex("typeTwo"));
+                pkStats = cursor.getInt(cursor.getColumnIndex("baseStatTotal"));
+
+                Pokemon pkA = new Pokemon(pokeName, pkType1, pkType2, pkStats);
+                returnPkmn.add(pkA);
+            }
+        }
+        return returnPkmn;
+    }
 }

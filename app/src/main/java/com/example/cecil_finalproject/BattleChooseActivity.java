@@ -31,6 +31,6 @@ public class BattleChooseActivity extends AppCompatActivity {
         imgButJBaChoo = findViewById(R.id.imgBtnVBaChoo_battle);
         btnJBaChoo = findViewById(R.id.btnVBattleChoose_back);
 
-        //Set usernames in text boxes NOTE TO SELF not done
+        //Set usernames in text boxes NOTE TO SELF NOT DONE
     }
 }
