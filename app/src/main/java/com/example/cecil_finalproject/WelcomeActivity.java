@@ -65,6 +65,7 @@ public class WelcomeActivity extends AppCompatActivity {
         if (cameFrom.getSerializableExtra("Team:") != null) {
             Team teamPassed = (Team) cameFrom.getSerializableExtra("Team:");
             welcomeTeamsList.add(teamPassed);
+
             Log.d("Total number of teams:", welcomeTeamsList.size() - 1 + "");
         }
 

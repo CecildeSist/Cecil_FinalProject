@@ -44,6 +44,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="text"
+        android:password="true"
         android:textColorHint="#80FFD040"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/etVMain_username"
