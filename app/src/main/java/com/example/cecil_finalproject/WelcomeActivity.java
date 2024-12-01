@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -69,6 +70,7 @@ public class WelcomeActivity extends AppCompatActivity {
             Log.d("Total number of teams:", welcomeTeamsList.size() - 1 + "");
         }
 
+        fillListView();
     }
 
     private void createListener() {
@@ -110,6 +112,27 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent welcomeToSearch = new Intent(WelcomeActivity.this, SearchActivity.class);
                 welcomeToSearch.putExtra("Username:", loggedUser);
                 startActivity(welcomeToSearch);
+            }
+        });
+    }
+
+    public void fillListView() {
+        welcomeAdapter = new SearchWelcomeListAdapter(this, dbHelper.welcomeTeams());
+        lvJWelcome_teams.setAdapter(welcomeAdapter);
+    }
+
+    public void teamDetailsClick() {
+        lvJWelcome_teams.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent welcomeToDetails = new Intent(WelcomeActivity.this, TeamDetailsActivity.class);
+                Team teamClicked = (Team) adapterView.getItemAtPosition(i);
+                welcomeToDetails.putExtra("Username:", loggedUser);
+                welcomeToDetails.putExtra("Team clicked:", teamClicked);
+                startActivity(welcomeToDetails);
             }
         });
     }

@@ -54,10 +54,19 @@ public class SearchWelcomeListAdapter extends BaseAdapter {
         Team team = listOfTeams.get(i);
 
         DatabaseHelper db = new DatabaseHelper(context);
+        Integer teamID = team.getTeamID();
 
         //Set GUI
         welCelUname.setText(team.getUserTrainer());
         //NOTE TO SELF find out how to turn the float into a string
-        welCelRate.setText.(db.averageRating(team.getTeamID()));
+        welCelRate.setText(db.averageRating(teamID));
+        welCelA.setText(team.getPkmnA());
+        welCelB.setText(team.getPkmnB());
+        welCelC.setText(team.getPkmnC());
+        welCelD.setText(team.getPkmnD());
+        welCelE.setText(team.getPkmnE());
+        welCelF.setText(team.getPkmnF());
+
+        return view;
     }
 }

@@ -7,36 +7,14 @@
     android:background="#253BF7">
 
     <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="6dp"
-        android:text="Average Rating:"
-        android:textColor="#FC5151"
-        app:layout_constraintStart_toStartOf="@+id/txtV_SC_pkmnB"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
         android:text="Trainer:"
         android:textColor="#FC5151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtV_SW_avg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="6dp"
-        android:text="#"
-        android:textColor="#FECF40"
-        app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -51,57 +29,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtV_SC_pkmnC"
+        android:id="@+id/txtV_SW_uName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="PKMN 3"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:text="USERNAME"
         android:textColor="#FECF40"
-        app:layout_constraintStart_toStartOf="@+id/txtV_SW_avg"
-        app:layout_constraintTop_toBottomOf="@+id/txtV_SW_avg" />
+        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtV_SC_pkmnB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
         android:text="PKMN 2"
         android:textColor="#FECF40"
-        app:layout_constraintStart_toEndOf="@+id/txtV_SW_uName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
-    <TextView
-        android:id="@+id/txtV_SW_pkmnA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="45dp"
-        android:text="PKMN 1"
-        android:textColor="#FECF40"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtV_SC_pkmnD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="21dp"
-        android:text="PKMN 4"
-        android:textColor="#FECF40"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtV_SW_pkmnA" />
-
-    <TextView
-        android:id="@+id/txtV_SC_pkmnE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:text="PKMN 5"
-        android:textColor="#FECF40"
-        app:layout_constraintStart_toStartOf="@+id/txtV_SC_pkmnB"
-        app:layout_constraintTop_toBottomOf="@+id/txtV_SC_pkmnB" />
 
     <TextView
         android:id="@+id/txtV_SC_pkmnF"
@@ -114,14 +61,67 @@
         app:layout_constraintTop_toBottomOf="@+id/txtV_SC_pkmnC" />
 
     <TextView
-        android:id="@+id/txtV_SW_uName"
+        android:id="@+id/txtV_SC_pkmnE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:text="USERNAME"
+        android:layout_marginTop="21dp"
+        android:text="PKMN 5"
         android:textColor="#FECF40"
-        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintStart_toStartOf="@+id/txtV_SC_pkmnB"
+        app:layout_constraintTop_toBottomOf="@+id/txtV_SC_pkmnB" />
+
+    <TextView
+        android:id="@+id/txtV_SW_pkmnA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:text="PKMN 1"
+        android:textColor="#FECF40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtV_SC_pkmnC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="PKMN 3"
+        android:textColor="#FECF40"
+        app:layout_constraintStart_toStartOf="@+id/txtV_SW_avg"
+        app:layout_constraintTop_toBottomOf="@+id/txtV_SW_avg" />
+
+    <TextView
+        android:id="@+id/txtV_SC_pkmnD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="21dp"
+        android:text="PKMN 4"
+        android:textColor="#FECF40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtV_SW_pkmnA" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="6dp"
+        android:text="Average Rating:"
+        android:textColor="#FC5151"
+        app:layout_constraintStart_toStartOf="@+id/txtV_SC_pkmnB"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtV_SW_avg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:text="#"
+        android:textColor="#FECF40"
+        app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

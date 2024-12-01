@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String database_name = "teambuilderApp.db";
     public static final String users_table_name = "Users";
@@ -333,7 +335,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Calculate the average rating for a team
     @SuppressLint("Range")
-    public float averageRating (Integer teamID) {
+    public String averageRating (Integer teamID) {
         String selectStatement = "Select reviewScore from " + reviews_table_name + " Where teamID = " + teamID + ";";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectStatement, null);
@@ -350,6 +352,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             averageRating = totalScore/numReviews;
         }
         db.close();
-        return averageRating;
+        String string = Float.toString(averageRating);
+        return string;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Team> welcomeTeams() {
+        ArrayList<Team> returnTeams = new ArrayList<>();
+        String selectStatement = "SELECT * FROM " + teams_table_name + ";";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //Run the query
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        Integer tID;
+        Float aBST;
+        String tN, pOn, pTw, pTh, pFo, pFi, pSi;
+
+        //Add teams to array list
+        if (cursor.moveToFirst()) {
+            do {
+                tID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                aBST = cursor.getFloat(cursor.getColumnIndex("averageBST"));
+                tN = cursor.getString(cursor.getColumnIndex("trainerName"));
+                pOn = cursor.getString(cursor.getColumnIndex("pkmnOne"));
+                pTw = cursor.getString(cursor.getColumnIndex("pkmnTwo"));
+                pTh = cursor.getString(cursor.getColumnIndex("pkmnThree"));
+                pFo = cursor.getString(cursor.getColumnIndex("pkmnFour"));
+                pFi = cursor.getString(cursor.getColumnIndex("pkmnFive"));
+                pSi = cursor.getString(cursor.getColumnIndex("pkmnSix"));
+
+                Team teamAdded = new Team(tID, aBST, tN, pOn, pTw, pTh, pFo, pFi, pSi);
+
+                returnTeams.add(teamAdded);
+            }
+            while (cursor.moveToNext());
+        }
+        return returnTeams;
     }
 }
