@@ -1,5 +1,6 @@
 package com.example.cecil_finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,6 +19,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
     Button btnJDetails_back, btnJDetails_Review;
     ImageButton imgJDetails_battle;
 
+    DatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +35,19 @@ public class TeamDetailsActivity extends AppCompatActivity {
         imgJDetails_battle = findViewById(R.id.imgVDetails);
         btnJDetails_Review = findViewById(R.id.btnVdetails_review);
         lvlJDetails_reviews = findViewById(R.id.lvVTeamDetails_reviews);
+
+        dbHelper = new DatabaseHelper(this);
+
+        Intent cameFrom = getIntent();
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+        Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
+        //Change the TextView at the top to display the current user's username
+        String teamUser = teamCaught.getUserTrainer();
+        txtJDetails_header.setText("Team by " + teamUser);
+
+        Integer teamID = teamCaught.getTeamID();
+
+        txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
     }
 }

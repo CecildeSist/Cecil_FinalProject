@@ -71,6 +71,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         fillListView();
+        teamDetailsClick();
     }
 
     private void createListener() {
