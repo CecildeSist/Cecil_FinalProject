@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+//NOTE TO SELF make a different adapter for the search page and name it differently so the professor doesn't get confused
 public class SearchWelcomeListAdapter extends BaseAdapter {
     Context context;
     ArrayList<Team> listOfTeams;

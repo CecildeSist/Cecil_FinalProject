@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 13);
+        super(c, database_name, null, 14);
     }
 
     @Override
@@ -134,8 +134,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Seadra', 'Water', 'No secondary type', 395);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Seaking', 'Water', 'No secondary type', 385);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Starmie', 'Water', 'Psychic', 435);");
-            //Removed the period from Mr. Mime’s name to prevent code errors
-            db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Mister Mime', 'Psychic', 'No secondary type', 340);");
+            //Made Mr. Mime’s name one word to prevent code errors
+            db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('MisterMime', 'Psychic', 'No secondary type', 340);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Scyther', 'Bug', 'Flying', 420);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Jynx', 'Ice', 'Psychic', 340);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Electabuzz', 'Electric', 'No secondary type', 395);");
@@ -166,8 +166,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void initTeamTable(){
         if(countRecordsFromTable(teams_table_name) == 0) {
             SQLiteDatabase db = this.getWritableDatabase();
-            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (1, 390, 'CecilDeSist', 'Magmar', 'Weezing', 'Mister Mime', 'Zapdos', 'Wigglytuff', 'Hitmonlee');");
-            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (2, 410.833, 'Mephistopheles', 'Mister Mime', 'Scyther', 'Venomoth', 'Parasect', 'Mewtwo', 'Magneton');");
+            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (1, 390, 'CecilDeSist', 'Magmar', 'Weezing', 'MisterMime', 'Zapdos', 'Wigglytuff', 'Hitmonlee');");
+            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (2, 410.833, 'Mephistopheles', 'MisterMime', 'Scyther', 'Venomoth', 'Parasect', 'Mewtwo', 'Magneton');");
             db.close();
         }
     }

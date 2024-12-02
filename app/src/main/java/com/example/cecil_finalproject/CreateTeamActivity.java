@@ -114,7 +114,7 @@ public class CreateTeamActivity extends AppCompatActivity {
         listOfPokemon.add("Seadra");
         listOfPokemon.add("Seaking");
         listOfPokemon.add("Starmie");
-        listOfPokemon.add("Mister Mime");
+        listOfPokemon.add("MisterMime");
         listOfPokemon.add("Scyther");
         listOfPokemon.add("Jynx");
         listOfPokemon.add("Electabuzz");

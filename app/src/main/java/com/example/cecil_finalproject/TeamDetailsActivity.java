@@ -24,6 +24,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     ArrayList<Pokemon> allPokemon = new ArrayList<>();
+    pkmnDetailsAdapter detailsAdapterA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
 
+        //Step 0: make review button grey and unusable if a review from the current user already exists NOTE TO SELF NOT DONE
+
         //Step 1: create and call button listeners
         detailsBackListener();
         detailsBattleListener();
@@ -62,7 +65,12 @@ public class TeamDetailsActivity extends AppCompatActivity {
         //Step 2: add all the Pokemon in the team to an array list of Pokemon using the database helper
         allPokemon = dbHelper.pkmnOnTeam(teamID);
 
-        //Step 3: put the Pokemon in the first listview NOTE TO SELF NOT DONE
+        //Step 3: add a review if the current user just gave one NOTE TO SELF NOT DONE
+
+        //Step 4: populate the first list view
+        fillFirstList();
+
+        //Step 5: populate second list view NOTE TO SELF NOT DONE
     }
 
     private void detailsBackListener() {
@@ -109,5 +117,10 @@ public class TeamDetailsActivity extends AppCompatActivity {
                 startActivity(detailsToReview);
             }
         });
+    }
+
+    public void fillFirstList() {
+        detailsAdapterA = new pkmnDetailsAdapter(this, allPokemon);
+        lvlJDetails_team.setAdapter(detailsAdapterA);
     }
 }
