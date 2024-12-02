@@ -56,6 +56,12 @@ public class TeamDetailsActivity extends AppCompatActivity {
         txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
 
         //Step 0: make review button grey and unusable if a review from the current user already exists NOTE TO SELF NOT DONE
+        if (dbHelper.isReviewUnallowed(teamCaught, loggedUser)) {
+            //make button grey NOTE TO SELF NOT DONE
+        }
+        else {
+            //make button yellow again NOTE TO SELF NOT DONE
+        }
 
         //Step 1: create and call button listeners
         detailsBackListener();

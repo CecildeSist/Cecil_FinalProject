@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 16);
+        super(c, database_name, null, 17);
     }
 
     @Override
@@ -502,5 +502,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return returnPkmn;
+    }
+
+    public boolean isReviewUnallowed(Team tV, String lU) {
+        //tV stands for "Team Viewed." lU stands for "Logged User."
+        boolean iRU;
+        //Step 1: Check if the current user already reviewed this team.
+        SQLiteDatabase db = this.getReadableDatabase();
+        Integer tID = tV.getTeamID();
+        String teamMaker = tV.getUserTrainer();
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + lU + "';";
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            iRU = true;
+        }
+        //Check if the person viewing the team is the creator
+        else if (lU == teamMaker) {
+            iRU = true;
+        }
+        else {
+            //Set boolean to false if neither of these things are true
+            iRU = false;
+        }
+        return iRU;
     }
 }
