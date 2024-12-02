@@ -61,12 +61,13 @@ public class TeamDetailsActivity extends AppCompatActivity {
         }
         else {
             //make button yellow again NOTE TO SELF NOT DONE
+            //Only call the listener for the review button if the boolean is false
+            detailsReviewListener();
         }
 
         //Step 1: create and call button listeners
         detailsBackListener();
         detailsBattleListener();
-        detailsReviewListener();
 
         //Step 2: add all the Pokemon in the team to an array list of Pokemon using the database helper
         allPokemon = dbHelper.pkmnOnTeam(teamID);

@@ -514,15 +514,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + lU + "';";
         Cursor cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
-            iRU = true;
+            iRU = false;
         }
         //Check if the person viewing the team is the creator
         else if (lU == teamMaker) {
-            iRU = true;
+            iRU = false;
         }
         else {
             //Set boolean to false if neither of these things are true
-            iRU = false;
+            iRU = true;
         }
         return iRU;
     }
