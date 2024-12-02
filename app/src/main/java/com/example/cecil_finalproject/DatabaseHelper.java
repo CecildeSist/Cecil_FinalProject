@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 14);
+        super(c, database_name, null, 16);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Seaking', 'Water', 'No secondary type', 385);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Starmie', 'Water', 'Psychic', 435);");
             //Made Mr. Mime’s name one word to prevent code errors
-            db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('MisterMime', 'Psychic', 'No secondary type', 340);");
+            db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Mr Mime', 'Psychic', 'No secondary type', 340);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Scyther', 'Bug', 'Flying', 420);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Jynx', 'Ice', 'Psychic', 340);");
             db.execSQL("INSERT INTO " + pkmn_table_name + " (pkmnName, typeOne, typeTwo, baseStatTotal) VALUES ('Electabuzz', 'Electric', 'No secondary type', 395);");
@@ -166,8 +166,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void initTeamTable(){
         if(countRecordsFromTable(teams_table_name) == 0) {
             SQLiteDatabase db = this.getWritableDatabase();
-            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (1, 390, 'CecilDeSist', 'Magmar', 'Weezing', 'MisterMime', 'Zapdos', 'Wigglytuff', 'Hitmonlee');");
-            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (2, 410.833, 'Mephistopheles', 'MisterMime', 'Scyther', 'Venomoth', 'Parasect', 'Mewtwo', 'Magneton');");
+            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (1, 390, 'CecilDeSist', 'Magmar', 'Weezing', 'Mr Mime', 'Zapdos', 'Wigglytuff', 'Hitmonlee');");
+            db.execSQL("INSERT INTO " + teams_table_name + " (teamID, averageBST, trainerName, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix) VALUES (2, 410.833, 'Mephistopheles', 'Mr Mime', 'Scyther', 'Venomoth', 'Parasect', 'Mewtwo', 'Magneton');");
             db.close();
         }
     }
@@ -404,7 +404,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Add Pokemon to array list
         if (cursor.moveToFirst()) {
             pokeName = cursor.getString(cursor.getColumnIndex("pkmnOne"));
-            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokeName + "';";
             //Run new query
             cursor = db.rawQuery(selectStatement, null);
             if (cursor.moveToFirst()) {
@@ -421,7 +421,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
             pokeName = cursor.getString(cursor.getColumnIndex("pkmnTwo"));
-            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokeName + "';";
             //Run new query
             cursor = db.rawQuery(selectStatement, null);
             if (cursor.moveToFirst()) {
@@ -438,7 +438,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
             pokeName = cursor.getString(cursor.getColumnIndex("pkmnThree"));
-            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokeName + "';";
             //Run new query
             cursor = db.rawQuery(selectStatement, null);
             if (cursor.moveToFirst()) {
@@ -455,7 +455,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
             pokeName = cursor.getString(cursor.getColumnIndex("pkmnFour"));
-            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokeName + "';";
             //Run new query
             cursor = db.rawQuery(selectStatement, null);
             if (cursor.moveToFirst()) {
@@ -472,7 +472,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
             pokeName = cursor.getString(cursor.getColumnIndex("pkmnFive"));
-            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokeName + "';";
             //Run new query
             cursor = db.rawQuery(selectStatement, null);
             if (cursor.moveToFirst()) {
@@ -489,7 +489,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
             pokeName = cursor.getString(cursor.getColumnIndex("pkmnSix"));
-            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = " + pokeName + ";";
+            selectStatement = "SELECT * FROM " + pkmn_table_name + " WHERE pkmnName = '" + pokeName + "';";
             //Run new query
             cursor = db.rawQuery(selectStatement, null);
             if (cursor.moveToFirst()) {

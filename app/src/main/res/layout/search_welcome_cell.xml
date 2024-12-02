@@ -21,40 +21,47 @@
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="1dp"
         android:text="/ 5"
         android:textColor="#FECF40"
-        app:layout_constraintStart_toEndOf="@+id/txtV_SW_avg"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/txtV_SC_pkmnC"
+        app:layout_constraintEnd_toEndOf="@+id/txtV_SC_pkmnC" />
 
     <TextView
         android:id="@+id/txtV_SW_uName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="6dp"
         android:text="USERNAME"
         android:textColor="#FECF40"
-        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintStart_toEndOf="@+id/txtV_SW_pkmnA"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtV_SC_pkmnB"
+        android:id="@+id/txtV_SW_pkmnA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:text="PKMN 2"
+        android:text="PKMN 1"
         android:textColor="#FECF40"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/txtV_SC_pkmnD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PKMN 4"
+        android:textColor="#FECF40"
+        app:layout_constraintStart_toStartOf="@+id/txtV_SW_pkmnA"
+        app:layout_constraintTop_toBottomOf="@+id/txtV_SW_pkmnA" />
 
     <TextView
         android:id="@+id/txtV_SC_pkmnF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="1dp"
         android:text="PKMN 6"
         android:textColor="#FECF40"
         app:layout_constraintStart_toStartOf="@+id/txtV_SC_pkmnC"
@@ -64,43 +71,32 @@
         android:id="@+id/txtV_SC_pkmnE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="1dp"
         android:text="PKMN 5"
         android:textColor="#FECF40"
         app:layout_constraintStart_toStartOf="@+id/txtV_SC_pkmnB"
         app:layout_constraintTop_toBottomOf="@+id/txtV_SC_pkmnB" />
 
     <TextView
-        android:id="@+id/txtV_SW_pkmnA"
+        android:id="@+id/txtV_SC_pkmnB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="45dp"
-        android:text="PKMN 1"
+        android:layout_marginTop="1dp"
+        android:text="PKMN 2"
         android:textColor="#FECF40"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <TextView
         android:id="@+id/txtV_SC_pkmnC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="1dp"
         android:text="PKMN 3"
         android:textColor="#FECF40"
         app:layout_constraintStart_toStartOf="@+id/txtV_SW_avg"
         app:layout_constraintTop_toBottomOf="@+id/txtV_SW_avg" />
-
-    <TextView
-        android:id="@+id/txtV_SC_pkmnD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
-        android:text="PKMN 4"
-        android:textColor="#FECF40"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtV_SW_pkmnA" />
 
     <TextView
         android:id="@+id/textView22"

@@ -12,14 +12,13 @@
         android:id="@+id/txtVWelcome_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="Welcome, USERNAME!"
         android:textColor="#FDCE40"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnVWelcome_delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnVWelcome_create"
@@ -37,36 +36,36 @@
         android:id="@+id/btnVWelcome_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="15dp"
         android:backgroundTint="#FDCE40"
         android:text="Delete Something"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVWelcome_username" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lvVWelcome_teams"
         android:layout_width="0dp"
-        android:layout_height="505dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="57dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnVWelcome_search" />
 
     <ImageButton
         android:id="@+id/imgBtnVWelcome_search"
         android:layout_width="0dp"
         android:layout_height="51dp"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="77dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginEnd="76dp"
         android:scaleX=".8"
         android:scaleY=".8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVWelcome_create"
+        app:layout_constraintTop_toBottomOf="@+id/btnVWelcome_delete"
         app:srcCompat="@drawable/searchbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,9 +56,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
         //Fill welcomeTeamsList if empty
         if (welcomeTeamsList.isEmpty()) {
-            Team teamOne = new Team(1, 390F, "CecilDeSist", "Magmar", "Weezing", "Mister Mime", "Zapdos", "Wigglytuff", "Hitmonlee");
+            Team teamOne = new Team(1, 390F, "CecilDeSist", "Magmar", "Weezing", "Mr Mime", "Zapdos", "Wigglytuff", "Hitmonlee");
             welcomeTeamsList.add(teamOne);
-            Team teamTwo = new Team(2, 410.833F, "Mephistopheles", "Mister Mime", "Scyther", "Venomoth", "Parasect", "Mewtwo", "Magneton");
+            Team teamTwo = new Team(2, 410.833F, "Mephistopheles", "Mr Mime", "Scyther", "Venomoth", "Parasect", "Mewtwo", "Magneton");
             welcomeTeamsList.add(teamTwo);
         }
 

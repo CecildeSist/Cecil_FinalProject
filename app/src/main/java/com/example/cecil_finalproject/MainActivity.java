@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         //Make error message invisible
         txtJMain_error.setVisibility(View.INVISIBLE);
 
+        //Empty the EditTexts
+        etJMain_u.setText("");
+        etJMain_p.setText("");
+
         dbHelper = new DatabaseHelper(this);
         dbHelper.initAllTables();
 

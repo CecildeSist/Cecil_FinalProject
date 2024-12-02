@@ -12,26 +12,52 @@
         android:id="@+id/txtVTeamDetails_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="Team by USERNAME"
         android:textColor="#FE5151"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_team"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lvVTeamDetails_team"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="29dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/txtVTeamDetails_username" />
+
+    <ListView
+        android:id="@+id/lvVTeamDetails_reviews"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <ImageButton
+        android:id="@+id/imgVDetails"
+        android:layout_width="129dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="22dp"
+        android:backgroundTint="#FECF40"
+        android:scaleX=".8"
+        android:scaleY=".8"
+        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_reviews"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVTeamDetails_average"
+        app:srcCompat="@drawable/battlebutton" />
 
     <TextView
         android:id="@+id/textView19"
@@ -55,6 +81,19 @@
         app:layout_constraintEnd_toStartOf="@+id/imgVDetails"
         app:layout_constraintStart_toStartOf="@+id/imgVDetails" />
 
+    <Button
+        android:id="@+id/btnVdetails_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="22dp"
+        android:backgroundTint="#FDCE40"
+        android:text="Review"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_reviews"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
@@ -66,55 +105,17 @@
         app:layout_constraintStart_toStartOf="@+id/btnVdetails_back"
         app:layout_constraintTop_toBottomOf="@+id/btnVdetails_back" />
 
-    <ListView
-        android:id="@+id/lvVTeamDetails_reviews"
-        android:layout_width="0dp"
-        android:layout_height="164dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imgVDetails"
-        android:layout_width="129dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginBottom="21dp"
-        android:backgroundTint="#FECF40"
-        android:scaleX=".8"
-        android:scaleY=".8"
-        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_reviews"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVTeamDetails_average"
-        app:srcCompat="@drawable/battlebutton" />
-
     <Button
         android:id="@+id/btnVdetails_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="280dp"
         android:backgroundTint="#FECF40"
         android:text="Go Back"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_reviews"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnVdetails_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="21dp"
-        android:backgroundTint="#FDCE40"
-        android:text="Review"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/lvVTeamDetails_reviews"
-        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
