@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -25,6 +26,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     ArrayList<Pokemon> allPokemon = new ArrayList<>();
     pkmnDetailsAdapter detailsAdapterA;
+    ArrayList<Review> thisTeamsReviews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
         lvlJDetails_reviews = findViewById(R.id.lvVTeamDetails_reviews);
 
         dbHelper = new DatabaseHelper(this);
+        dbHelper.initAllTables();
 
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
@@ -53,14 +56,20 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         Integer teamID = teamCaught.getTeamID();
 
+        //Fill the array list of reviews
+        thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
+
         txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
 
         //Step 0: make review button grey and unusable if a review from the current user already exists NOTE TO SELF NOT DONE
-        if (dbHelper.isReviewUnallowed(teamCaught, loggedUser)) {
-            //make button grey NOTE TO SELF NOT DONE
+        if (dbHelper.isReviewUnallowed(teamCaught, loggedUser) == true) {
+            //make button grey (#E0E0E0)
+            //I went to colors.xml and added both yellow and light grey. NOTE TO SELF CHECK WITH TEACHER IF THAT'S ALLOWED
+            btnJDetails_Review.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.light_grey));
         }
         else {
-            //make button yellow again NOTE TO SELF NOT DONE
+            //make button yellow again (#FDCE40)
+            btnJDetails_Review.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.yellow));
             //Only call the listener for the review button if the boolean is false
             detailsReviewListener();
         }

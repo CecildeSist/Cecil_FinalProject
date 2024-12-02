@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 17);
+        super(c, database_name, null, 24);
     }
 
     @Override
@@ -391,7 +391,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnTeams;
     }
 
-    @SuppressLint("Range")
+    @SuppressLint({"Range", "Recycle"})
     public ArrayList<Pokemon> pkmnOnTeam(Integer teamID) {
         ArrayList<Pokemon> returnPkmn = new ArrayList<>();
         //Get Pokemon 1
@@ -504,26 +504,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnPkmn;
     }
 
+    @SuppressLint("Range")
+    public ArrayList<Review> oneTeamsReviews(Team team) {
+        //This function retrieves all the reviews for ONE TEAM and ONE TEAM only
+        ArrayList<Review> oTR = new ArrayList<>();
+        Integer team_id = team.getTeamID();
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + team_id + ";";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Integer reviewID, reviewScore;
+        String userReviewing;
+
+
+        //Run the query
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                reviewID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+                reviewScore = cursor.getInt(cursor.getColumnIndex("reviewScore"));
+                //Team ID is always the integer team_id
+                userReviewing = cursor.getString(cursor.getColumnIndex("userReviewing"));
+
+                Review reviewAdded = new Review(reviewID, reviewScore, team_id, userReviewing);
+                oTR.add(reviewAdded);
+            }
+            while (cursor.moveToNext());
+        }
+
+        db.close();
+        return oTR;
+    }
+
     public boolean isReviewUnallowed(Team tV, String lU) {
         //tV stands for "Team Viewed." lU stands for "Logged User."
-        boolean iRU;
+        //NOTE TO SELF REMOVE LOG STATEMENTS AFTER ENSURING THIS FUNCTION WORKS
+        Log.d("String lU:", lU);
+        boolean iRU = false;
         //Step 1: Check if the current user already reviewed this team.
         SQLiteDatabase db = this.getReadableDatabase();
         Integer tID = tV.getTeamID();
-        String teamMaker = tV.getUserTrainer();
-        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + lU + "';";
+        Log.d("Integer tID:", tID + "");
+        String selectStatement = "SELECT trainerName FROM " + teams_table_name + " WHERE teamID = " + tID + ";";
         Cursor cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
-            iRU = false;
+            @SuppressLint("Range") String teamMaker = cursor.getString(cursor.getColumnIndex("trainerName"));
+            selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + lU + "';";
+            Log.d("Statement?", "Exists");
+            cursor = db.rawQuery(selectStatement, null);
+            Log.d("Cursor?", "Run");
+            //Check if the person viewing the team is the creator or if the logged-in user has reviewed this team already
+            if (lU == teamMaker || cursor.moveToFirst()) {
+                if (lU == teamMaker) {
+                    Log.d("condition 1:", "fulfilled");
+                }
+                if (cursor.moveToFirst()) {
+                    Log.d("condition 2:", "fulfilled");
+                }
+                iRU = true;
+            }
+            else {
+                //Set boolean to false if neither of these things are true
+                iRU = false;
+                Log.d("condition 3:", "fulfilled");
+            }
         }
-        //Check if the person viewing the team is the creator
-        else if (lU == teamMaker) {
-            iRU = false;
-        }
-        else {
-            //Set boolean to false if neither of these things are true
-            iRU = true;
-        }
+        db.close();
         return iRU;
     }
 }

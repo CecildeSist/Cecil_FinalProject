@@ -3,17 +3,17 @@ package com.example.cecil_finalproject;
 import java.io.Serializable;
 
 public class Review implements Serializable {
-    Integer revID, revScore;
-    String teName, uReviwer;
+    Integer revID, revScore, teamID;
+    String uReviwer;
 
     public Review() {
 
     }
 
-    public Review(Integer rID, Integer rS, String tN, String uR) {
+    public Review(Integer rID, Integer rS, Integer tID, String uR) {
         revID = rID;
         revScore = rS;
-        teName = tN;
+        teamID = tID;
         uReviwer = uR;
     }
 
@@ -33,12 +33,12 @@ public class Review implements Serializable {
         this.revScore = revScore;
     }
 
-    public String getTeName() {
-        return teName;
+    public Integer getTeamID() {
+        return teamID;
     }
 
-    public void setTeName(String teName) {
-        this.teName = teName;
+    public void setTeamID(Integer teamID) {
+        this.teamID = teamID;
     }
 
     public String getuReviwer() {
