@@ -62,7 +62,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
         txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
 
         //Step 0: make review button grey and unusable if a review from the current user already exists NOTE TO SELF NOT DONE
-        if (dbHelper.isReviewUnallowed(teamCaught, loggedUser) == true) {
+        if (dbHelper.isReviewUnallowed(teamCaught, loggedUser)) {
             //make button grey (#E0E0E0)
             //I went to colors.xml and added both yellow and light grey. NOTE TO SELF CHECK WITH TEACHER IF THAT'S ALLOWED
             btnJDetails_Review.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.light_grey));

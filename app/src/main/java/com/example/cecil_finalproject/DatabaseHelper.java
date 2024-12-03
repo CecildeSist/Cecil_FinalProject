@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 24);
+        super(c, database_name, null, 25);
     }
 
     @Override
@@ -535,6 +535,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return oTR;
     }
 
+    @SuppressLint("Range")
     public boolean isReviewUnallowed(Team tV, String lU) {
         //tV stands for "Team Viewed." lU stands for "Logged User."
         //NOTE TO SELF REMOVE LOG STATEMENTS AFTER ENSURING THIS FUNCTION WORKS
@@ -544,29 +545,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Integer tID = tV.getTeamID();
         Log.d("Integer tID:", tID + "");
-        String selectStatement = "SELECT trainerName FROM " + teams_table_name + " WHERE teamID = " + tID + ";";
+        String teamMaker = tV.getUserTrainer();
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + lU + "';";
+        Log.d("Statement?", "Exists");
         Cursor cursor = db.rawQuery(selectStatement, null);
+        Log.d("Cursor?", "Run");
+        //Check if the person viewing the team is the creator or if the logged-in user has reviewed this team already
         if (cursor.moveToFirst()) {
-            @SuppressLint("Range") String teamMaker = cursor.getString(cursor.getColumnIndex("trainerName"));
-            selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + lU + "';";
-            Log.d("Statement?", "Exists");
-            cursor = db.rawQuery(selectStatement, null);
-            Log.d("Cursor?", "Run");
-            //Check if the person viewing the team is the creator or if the logged-in user has reviewed this team already
-            if (lU == teamMaker || cursor.moveToFirst()) {
-                if (lU == teamMaker) {
-                    Log.d("condition 1:", "fulfilled");
-                }
-                if (cursor.moveToFirst()) {
-                    Log.d("condition 2:", "fulfilled");
-                }
+            Integer count = cursor.getCount();
+            if (count >= 1) {
+                Log.d("condition 1:", "fulfilled");
                 iRU = true;
             }
-            else {
-                //Set boolean to false if neither of these things are true
-                iRU = false;
-                Log.d("condition 3:", "fulfilled");
-            }
+        }
+        if (lU.equals(teamMaker)) {
+            Log.d("condition 2:", "fulfilled");
+            iRU = true;
         }
         db.close();
         return iRU;
