@@ -568,7 +568,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<Integer> filterTeamIDs(String creator, String species, String type) {
         ArrayList<Integer> listIDs = new ArrayList<>();
-        String selectStatement = "Select * from " + teams_table_name + " Where ";
+        String selectStatement = "Select " + teams_table_name +".* from " + teams_table_name + " Where ";
         if (creator.isEmpty()) {
             selectStatement += "trainerName is not null ";
         }
@@ -579,7 +579,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             selectStatement += " and pkmnOne = '" + species + "' or pkmnTwo = '" + species + "' or pkmnThree = '" + species + "' or pkmnFour = '" + species + "' or pkmnFive = '" + species + "' or pkmnFive = '" + species + "' or pkmnSix = '" + species + " ";
         }
         if(!type.isEmpty()) {
-            selectStatement += " and ";
+            selectStatement += " INNER JOIN " + pkmn_table_name + " ON ";
         }
     }
 }
