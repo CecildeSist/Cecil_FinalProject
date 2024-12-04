@@ -86,9 +86,15 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 Integer teamID = teamCaught.getTeamID();
                 dbHelper.addReview(reviewScore, teamID, userReviewing);
 
+                Integer rID = dbHelper.countRecordsFromTable("Reviews") + 1;
+
                 Intent reviewToDetails = new Intent(LeaveReviewActivity.this, TeamDetailsActivity.class);
                 reviewToDetails.putExtra("Team clicked:", teamCaught);
                 reviewToDetails.putExtra("Username:", userReviewing);
+
+                Review newReview = new Review(rID, reviewScore, teamID, userReviewing);
+                reviewToDetails.putExtra("New Review:", newReview);
+
                 startActivity(reviewToDetails);
             }
         });

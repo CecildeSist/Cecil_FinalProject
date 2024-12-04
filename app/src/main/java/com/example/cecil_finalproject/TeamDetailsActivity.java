@@ -61,6 +61,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
         thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
         detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
         lvlJDetails_reviews.setAdapter(detailsAdapterB);
+        Integer numReviews = thisTeamsReviews.size();
 
         txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
 
@@ -89,7 +90,25 @@ public class TeamDetailsActivity extends AppCompatActivity {
         //Step 4: populate the first list view
         fillFirstList();
 
-        //Step 5: populate second list view NOTE TO SELF NOT DONE
+        //Update review adapter and average score if the intent is from the "leave review" activity NOTE TO SELF NOT DONE
+        Review reviewCheck = (Review) cameFrom.getSerializableExtra("New Review");
+        if (reviewCheck != null) {
+            //Update review adapter
+
+            //detailsAdapterB.notifyDataSetChanged();
+
+            /*thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
+            detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
+            lvlJDetails_reviews.setAdapter(detailsAdapterB);*/
+
+            /*thisTeamsReviews.add(reviewCheck);
+            detailsAdapterB.notifyDataSetChanged();*/
+
+            //Update average score NOTE TO SELF NOT DONE
+            /*txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");*/
+            String avgScore = dbHelper.averageRating(teamID);
+            txtJDetails_avg.setText(avgScore + " / 5");
+        }
     }
 
     private void detailsBackListener() {
