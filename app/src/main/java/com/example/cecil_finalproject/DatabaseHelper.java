@@ -535,7 +535,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return oTR;
     }
 
-    @SuppressLint("Range")
+
     public boolean isReviewUnallowed(Team tV, String lU) {
         //tV stands for "Team Viewed." lU stands for "Logged User."
         //NOTE TO SELF REMOVE LOG STATEMENTS AFTER ENSURING THIS FUNCTION WORKS
@@ -592,5 +592,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectStatement, null);
         //Output the number to logcat NOTE TO SELF NOT DONE
         db.close();
+    }
+
+    @SuppressLint("Range")
+    public boolean oldPassCorrect(String uname, String oldPGuess) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectStatement = "SELECT * FROM " + users_table_name + " WHERE username = '" + uname + "';";
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        String oldP = cursor.getString(cursor.getColumnIndex("password"));
+        if (oldPGuess.equals(oldP)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    //NOTE TO SELF NOT DONE
+    public void updatePass(String uname, String newPass) {
+
     }
 }
