@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class WelcomeActivity extends AppCompatActivity {
 
     TextView txtJWelcome_username;
-    Button btnJWelcome_create, btnJWelcome_delete;
+    Button btnJWelcome_create, btnJWelcome_delete, btnJWelc_upd;
     ImageButton imgBtnJWelcome_search;
     ListView lvJWelcome_teams;
 
@@ -38,6 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
         btnJWelcome_delete = findViewById(R.id.btnVWelcome_delete);
         imgBtnJWelcome_search = findViewById(R.id.imgBtnVWelcome_search);
         lvJWelcome_teams = findViewById(R.id.lvVWelcome_teams);
+        btnJWelc_upd = findViewById(R.id.btnVWelcUpdate);
 
         //Setting up DatabaseHelper
         dbHelper = new DatabaseHelper(this);
@@ -53,6 +54,7 @@ public class WelcomeActivity extends AppCompatActivity {
         createListener();
         deleteListener();
         searchListener();
+        welUpdListen();
 
         //Fill welcomeTeamsList if empty
         if (welcomeTeamsList.isEmpty()) {
@@ -134,6 +136,20 @@ public class WelcomeActivity extends AppCompatActivity {
                 welcomeToDetails.putExtra("Username:", loggedUser);
                 welcomeToDetails.putExtra("Team clicked:", teamClicked);
                 startActivity(welcomeToDetails);
+            }
+        });
+    }
+
+    private void welUpdListen() {
+        btnJWelc_upd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent welcToChooseUpd = new Intent(WelcomeActivity.this, ChooseUpdateActivity.class);
+                welcToChooseUpd.putExtra("Username:", loggedUser);
+                startActivity(welcToChooseUpd);
             }
         });
     }

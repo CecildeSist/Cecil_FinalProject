@@ -12,23 +12,28 @@
         android:id="@+id/txtVWelcome_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="3dp"
         android:fontFamily="sans-serif-black"
         android:text="Welcome, USERNAME!"
         android:textColor="#FDCE40"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnVWelcome_delete"
+        app:layout_constraintBottom_toTopOf="@+id/btnVWelcome_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnVWelcome_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="25dp"
         android:backgroundTint="#FECF40"
         android:text="Create a Team"
         android:textColor="#000000"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnVWelcUpdate"
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnVWelcome_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVWelcome_username" />
 
@@ -36,36 +41,48 @@
         android:id="@+id/btnVWelcome_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="#FDCE40"
         android:text="Delete Something"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/btnVWelcUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnVWelcome_search" />
 
     <ListView
         android:id="@+id/lvVWelcome_teams"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnVWelcome_search" />
+        app:layout_constraintTop_toBottomOf="@+id/btnVWelcUpdate" />
 
     <ImageButton
         android:id="@+id/imgBtnVWelcome_search"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginEnd="76dp"
+        android:layout_width="251dp"
+        android:layout_height="49dp"
         android:scaleX=".8"
         android:scaleY=".8"
+        app:layout_constraintBottom_toTopOf="@+id/btnVWelcUpdate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVWelcome_delete"
+        app:layout_constraintStart_toEndOf="@+id/btnVWelcome_create"
+        app:layout_constraintTop_toBottomOf="@+id/txtVWelcome_username"
         app:srcCompat="@drawable/searchbutton" />
+
+    <Button
+        android:id="@+id/btnVWelcUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#FDCE40"
+        android:text="Update Something"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/lvVWelcome_teams"
+        app:layout_constraintEnd_toStartOf="@+id/btnVWelcome_delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVWelcome_create" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
