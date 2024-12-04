@@ -1,5 +1,6 @@
 package com.example.cecil_finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,8 @@ public class LeaveReviewActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
 
+    Integer reviewScore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,14 @@ public class LeaveReviewActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
         dbHelper.initAllTables();
 
+        tJLeave_num.setText("0");
+        seekJLeave.setProgress(0);
+
+        //Grab team clicked and logged-in user's name
+        Intent cameFrom = getIntent();
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+        Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
+
         //Call seekbar and button listeners NOTE TO SELF not done
         seekBarListener();
         leaveReviewListener();
@@ -44,6 +55,23 @@ public class LeaveReviewActivity extends AppCompatActivity {
 
     //NOTE TO SELF not done
     private void seekBarListener() {
+        seekJLeave.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                reviewScore = seekJLeave.getProgress();
+                tJLeave_num.setText(reviewScore.toString());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     //NOTE TO SELF not done
@@ -51,7 +79,17 @@ public class LeaveReviewActivity extends AppCompatActivity {
         bJLeave_rev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String userReviewing = (String) cameFrom.getSerializableExtra("Username:");
+                Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
 
+                Integer teamID = teamCaught.getTeamID();
+                dbHelper.addReview(reviewScore, teamID, userReviewing);
+
+                Intent reviewToDetails = new Intent(LeaveReviewActivity.this, TeamDetailsActivity.class);
+                reviewToDetails.putExtra("Team clicked:", teamCaught);
+                reviewToDetails.putExtra("Username:", userReviewing);
+                startActivity(reviewToDetails);
             }
         });
     }

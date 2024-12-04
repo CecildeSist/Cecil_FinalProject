@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                         newUser.setuName(registerUsername);
                         newUser.setpWord(registerUsername);
 
-                        txtJRegister_error.setVisibility(View.VISIBLE);
+                        txtJRegister_error.setVisibility(View.INVISIBLE);
                         dbHelper.addNewUser(registerUsername, registerPassword);
                         Intent registerToMain = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(registerToMain);

@@ -50,7 +50,7 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="4dp"
         android:text="Has Pokémon"
         android:textColor="#FDCE40"
         app:layout_constraintBottom_toTopOf="@+id/spnVSearch_pokemon"
@@ -70,38 +70,16 @@
         app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_type"
+        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_pokemon"
         app:srcCompat="@drawable/searchbutton" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="2dp"
-        android:text="Has Type"
-        android:textColor="#FDCE40"
-        app:layout_constraintBottom_toTopOf="@+id/spnVSearch_type"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_pokemon" />
-
-    <Spinner
-        android:id="@+id/spnVSearch_type"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
-        android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Spinner
         android:id="@+id/spnVSearch_pokemon"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="78dp"
         android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -116,15 +94,15 @@
         app:layout_constraintBottom_toTopOf="@+id/lvVSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_type" />
+        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_pokemon" />
 
     <ListView
         android:id="@+id/lvVSearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

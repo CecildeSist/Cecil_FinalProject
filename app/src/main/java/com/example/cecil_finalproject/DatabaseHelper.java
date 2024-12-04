@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 28);
+        super(c, database_name, null, 29);
     }
 
     @Override
@@ -255,7 +255,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         newUser.setpWord(newPWord);
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO " + users_table_name + " (userID, username, password) VALUES ('" + newUName + "', '" + newPWord + "');");
+        db.execSQL("INSERT INTO " + users_table_name + " (username, password) VALUES ('" + newUName + "', '" + newPWord + "');");
         db.close();
         Log.d("new number of users in database:", countRecordsFromTable(users_table_name) + "");
     }
@@ -566,7 +566,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return iRU;
     }
 
-    public ArrayList<Integer> filterTeamIDs(String creator, String species, String type) {
+    //NOTE TO SELF NOT DONE
+    /*public ArrayList<Integer> filterTeamIDs(String creator, String species, String type) {
         ArrayList<Integer> listIDs = new ArrayList<>();
         String selectStatement = "Select " + teams_table_name +".* from " + teams_table_name + " Where ";
         if (creator.isEmpty()) {
@@ -578,8 +579,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(!species.isEmpty()) {
             selectStatement += " and pkmnOne = '" + species + "' or pkmnTwo = '" + species + "' or pkmnThree = '" + species + "' or pkmnFour = '" + species + "' or pkmnFive = '" + species + "' or pkmnFive = '" + species + "' or pkmnSix = '" + species + " ";
         }
-        if(!type.isEmpty()) {
-            selectStatement += " INNER JOIN " + pkmn_table_name + " ON ";
-        }
+    }*/
+
+    public void addReview(Integer rS, Integer tID, String uR) {
+        //rS = reviewScore, tID = teamID, uR = userReviewing
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rID = countRecordsFromTable(reviews_table_name) + 1;
+        String selectStatement = "INSERT INTO " + reviews_table_name + " (reviewID, reviewScore, teamID, userReviewing) VALUES (" + rID + ", " + rS + ", " + tID + ", '" + uR + "');";
+        db.execSQL(selectStatement);
+        db.close();
     }
 }
