@@ -58,6 +58,14 @@ public class TeamDetailsActivity extends AppCompatActivity {
         Integer teamID = teamCaught.getTeamID();
 
         //Fill the array list of reviews
+
+        /*if (teamID == 1) {
+            Review initialReview = new Review(2, 3, 1, "Mephistopheles");
+        }
+        else if (teamID == 2) {
+            Review initialReview = new Review(1, 5, 2, "CecilDeSist");
+        }*/
+
         thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
         detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
         lvlJDetails_reviews.setAdapter(detailsAdapterB);
@@ -103,6 +111,10 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
             /*thisTeamsReviews.add(reviewCheck);
             detailsAdapterB.notifyDataSetChanged();*/
+            if (reviewCheck.getTeamID() == teamID) {
+                thisTeamsReviews.add(reviewCheck);
+                detailsAdapterB.notifyDataSetChanged();
+            }
 
             //Update average score NOTE TO SELF NOT DONE
             /*txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");*/
