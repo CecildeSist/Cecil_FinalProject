@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Review implements Serializable {
     Integer revID, revScore, teamID;
-    String uReviwer;
+    String uReviewer;
 
     public Review() {
 
@@ -14,7 +14,7 @@ public class Review implements Serializable {
         revID = rID;
         revScore = rS;
         teamID = tID;
-        uReviwer = uR;
+        uReviewer = uR;
     }
 
     public Integer getRevID() {
@@ -41,11 +41,11 @@ public class Review implements Serializable {
         this.teamID = teamID;
     }
 
-    public String getuReviwer() {
-        return uReviwer;
+    public String getuReviewer() {
+        return uReviewer;
     }
 
-    public void setuReviwer(String uReviwer) {
-        this.uReviwer = uReviwer;
+    public void setuReviewer(String uReviewer) {
+        this.uReviewer = uReviewer;
     }
 }

@@ -27,6 +27,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
     ArrayList<Pokemon> allPokemon = new ArrayList<>();
     pkmnDetailsAdapter detailsAdapterA;
     ArrayList<Review> thisTeamsReviews = new ArrayList<>();
+    ReviewAdapter detailsAdapterB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         //Fill the array list of reviews
         thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
+        detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
+        lvlJDetails_reviews.setAdapter(detailsAdapterB);
 
         txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
 
