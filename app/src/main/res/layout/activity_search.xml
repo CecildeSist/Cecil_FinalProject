@@ -8,6 +8,19 @@
     android:background="#253BF8"
     tools:context=".SearchActivity">
 
+    <EditText
+        android:id="@+id/etSearchCreator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="text"
+        android:textColorHint="#80FFD040"
+        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -27,46 +40,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:layout_marginBottom="2dp"
         android:text="Team Creator"
         android:textColor="#FDCE40"
-        app:layout_constraintBottom_toTopOf="@+id/spnVSearch_usernames"
+        app:layout_constraintBottom_toTopOf="@+id/etSearchCreator"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <Spinner
-        android:id="@+id/spnVSearch_usernames"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
         android:text="Has Pokémon"
         android:textColor="#FDCE40"
         app:layout_constraintBottom_toTopOf="@+id/spnVSearch_pokemon"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_usernames" />
+        app:layout_constraintEnd_toEndOf="@+id/etSearchCreator"
+        app:layout_constraintStart_toStartOf="@+id/etSearchCreator"
+        app:layout_constraintTop_toBottomOf="@+id/etSearchCreator" />
 
-    <Spinner
-        android:id="@+id/spnVSearch_pokemon"
+    <ImageButton
+        android:id="@+id/imgbtnVSearch_search"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        android:layout_height="53dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:backgroundTint="#FDCE40"
+        android:scaleX=".6"
+        android:scaleY=".6"
+        app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_type"
+        app:srcCompat="@drawable/searchbutton" />
 
     <TextView
         android:id="@+id/textView15"
@@ -84,59 +89,22 @@
         android:id="@+id/spnVSearch_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="59dp"
         android:backgroundTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spnVSearch_pokemon"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:text="Average Rating Lower Bound"
-        android:textColor="#FECF40"
-        app:layout_constraintBottom_toTopOf="@+id/etVSearch_lower"
-        app:layout_constraintStart_toStartOf="@+id/etVSearch_lower"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_type" />
-
-    <EditText
-        android:id="@+id/etVSearch_lower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:singleLine="false"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintStart_toStartOf="@+id/etVSearch_upper"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="2dp"
-        android:text="Average Rating Upper Bound"
-        android:textColor="#FDCE40"
-        app:layout_constraintBottom_toTopOf="@+id/etVSearch_upper"
-        app:layout_constraintStart_toStartOf="@+id/etVSearch_lower"
-        app:layout_constraintTop_toBottomOf="@+id/etVSearch_lower" />
-
-    <EditText
-        android:id="@+id/etVSearch_upper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/imgbtnVSearch_search"
-        app:layout_constraintEnd_toEndOf="@+id/imgbtnVSearch_search"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <Button
         android:id="@+id/btnVSearch_back"
@@ -148,28 +116,18 @@
         app:layout_constraintBottom_toTopOf="@+id/lvVSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgbtnVSearch_search" />
+        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_type" />
 
     <ListView
         android:id="@+id/lvVSearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnVSearch_back" />
-
-    <ImageButton
-        android:id="@+id/imgbtnVSearch_search"
-        android:layout_width="259dp"
-        android:layout_height="57dp"
-        android:backgroundTint="#FDCE40"
-        android:scaleX=".6"
-        android:scaleY=".6"
-        app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etVSearch_upper"
-        app:srcCompat="@drawable/searchbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         txtJRegister_errorEmpty.setVisibility(View.INVISIBLE);
 
         dbHelper = new DatabaseHelper(this);
+        dbHelper.initAllTables();
 
         //Call button listeners
         btnRegisterRegisterListener();
