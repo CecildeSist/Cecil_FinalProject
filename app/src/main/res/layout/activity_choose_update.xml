@@ -24,14 +24,14 @@
         android:id="@+id/txtVchooseUp_uname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="Welcome, USERNAME!"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="#FC5151"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

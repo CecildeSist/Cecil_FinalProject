@@ -88,6 +88,23 @@ public class ChooseUpdateActivity extends AppCompatActivity {
     }
 
     private void chooseUpForward() {
+        chooseUpYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
+                if (choice.equals("My password")) {
+                    Intent chooseUp_to_upPass = new Intent(ChooseUpdateActivity.this, UpdatePasswordActivity.class);
+                    chooseUp_to_upPass.putExtra("Username:", loggedUser);
+                    startActivity(chooseUp_to_upPass);
+                }
+                else if (choice.equals("A team")) {
+                    Intent chooseUp_to_chooseTeam = new Intent(ChooseUpdateActivity.this, ChooseTeamToUpdateActivity.class);
+                    chooseUp_to_chooseTeam.putExtra("Username:", loggedUser);
+                    startActivity(chooseUp_to_chooseTeam);
+                }
+            }
+        });
     }
 }

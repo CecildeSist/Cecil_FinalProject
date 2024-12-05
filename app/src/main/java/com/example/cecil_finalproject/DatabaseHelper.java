@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 50);
+        super(c, database_name, null, 54);
     }
 
     @Override
@@ -631,6 +631,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //NOTE TO SELF NOT DONE
     public void updatePass(String uname, String newPass) {
+        //Step 1: Get writeable instance of user database
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        String selectStatement = "SELECT password FROM " + users_table_name + " WHERE username = '" + uname + "';";
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if (cursor.moveToFirst()) {
+            String updateStatement = "UPDATE " + users_table_name + " SET password = '" + newPass + "';";
+            cursor = db.rawQuery(updateStatement, null);
+        }
+
+        db.close();
     }
 }

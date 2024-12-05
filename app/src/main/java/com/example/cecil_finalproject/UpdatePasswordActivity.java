@@ -41,9 +41,8 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         upPassYesJ = findViewById(R.id.upPassYesV);
         upPassNoJ = findViewById(R.id.upPassNoV);
 
-        //Call button listeners NOTE TO SELF NOT DONE
+        //Call button listeners
         upPassBack();
-        //NOTE TO SELF THIS ONE ISN'T DONE
         upBassForward();
     }
 
@@ -81,6 +80,9 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                 }
                 else {
                     //NOTE TO SELF NOT DONE
+                    dbHelper.updatePass(loggedUser, newPass);
+                    Intent upPass_to_Start = new Intent(UpdatePasswordActivity.this, MainActivity.class);
+                    startActivity(upPass_to_Start);
                 }
             }
         });

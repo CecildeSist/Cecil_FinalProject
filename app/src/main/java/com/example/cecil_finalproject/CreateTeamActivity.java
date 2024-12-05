@@ -176,7 +176,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void secondSpinnerListener() {
-        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        pkmn2Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 pokemonB = adapterView.getItemAtPosition(i).toString();
@@ -190,7 +190,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void thirdSpinnerListener() {
-        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        pkmn3Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 pokemonC = adapterView.getItemAtPosition(i).toString();
@@ -204,7 +204,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void fourthSpinnerListener() {
-        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        pkmn4Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 pokemonD = adapterView.getItemAtPosition(i).toString();
@@ -218,7 +218,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void fifthSpinnerListener() {
-        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        pkmn5Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 pokemonE = adapterView.getItemAtPosition(i).toString();
@@ -232,7 +232,7 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void sixthSpinnerListener() {
-        pkmn1Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        pkmn6Spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 pokemonF = adapterView.getItemAtPosition(i).toString();
