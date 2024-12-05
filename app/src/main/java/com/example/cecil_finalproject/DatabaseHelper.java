@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 40);
+        super(c, database_name, null, 46);
     }
 
     @Override
@@ -507,7 +507,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public ArrayList<Review> oneTeamsReviews(Team team) {
         //This function retrieves all the reviews for ONE TEAM and ONE TEAM only
-        ArrayList<Review> oTR = new ArrayList<>();
+        /*ArrayList<Review> oTR = new ArrayList<>();
         Integer team_id = team.getTeamID();
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + team_id + ";";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -532,7 +532,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         db.close();
-        return oTR;
+        return oTR;*/
+        Integer tID = team.getTeamID();
+        Log.d("team ID:", tID + "");
+        //ArrayList<Integer> applicableReviewIDs = new ArrayList<>();
+        ArrayList<Review> listReviews = new ArrayList<>();
+        String selectStatement = "Select * from " + reviews_table_name + " Where teamID = " + tID + ";";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        Integer revID, revScore, teID;
+        String uR;
+
+        if (cursor.moveToFirst()) {
+            do {
+                revID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+                revScore = cursor.getInt(cursor.getColumnIndex("reviewScore"));
+                teID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                uR = cursor.getString(cursor.getColumnIndex("userReviewing"));
+
+                Review rev = new Review(revID, revScore, teID, uR);
+                listReviews.add(rev);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return listReviews;
     }
 
 
@@ -592,6 +617,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectStatement, null);
         //Output the number to logcat NOTE TO SELF NOT DONE
         db.close();
+        Log.d("Review added?", "yes");
     }
 
     @SuppressLint("Range")

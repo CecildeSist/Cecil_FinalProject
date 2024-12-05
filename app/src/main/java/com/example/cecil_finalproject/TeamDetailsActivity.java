@@ -66,10 +66,21 @@ public class TeamDetailsActivity extends AppCompatActivity {
             Review initialReview = new Review(1, 5, 2, "CecilDeSist");
         }*/
 
+        /*thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
+        detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
+        lvlJDetails_reviews.setAdapter(detailsAdapterB);
+        Integer numReviews = thisTeamsReviews.size();*/
+
+
         thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
         detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
         lvlJDetails_reviews.setAdapter(detailsAdapterB);
-        Integer numReviews = thisTeamsReviews.size();
+        if (cameFrom.getSerializableExtra("New Review:") != null) {
+            /*Review reviewData = (Review) cameFrom.getSerializableExtra("New Review:");
+            thisTeamsReviews.add(reviewData);*/
+            detailsAdapterB.notifyDataSetChanged();
+            txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
+        }
 
         txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");
 
@@ -99,8 +110,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
         fillFirstList();
 
         //Update review adapter and average score if the intent is from the "leave review" activity NOTE TO SELF NOT DONE
-        Review reviewCheck = (Review) cameFrom.getSerializableExtra("New Review");
-        if (reviewCheck != null) {
+        //Review reviewCheck = (Review) cameFrom.getSerializableExtra("New Review");
+        //if (reviewCheck != null) {
             //Update review adapter
 
             //detailsAdapterB.notifyDataSetChanged();
@@ -111,16 +122,16 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
             /*thisTeamsReviews.add(reviewCheck);
             detailsAdapterB.notifyDataSetChanged();*/
-            if (reviewCheck.getTeamID() == teamID) {
-                thisTeamsReviews.add(reviewCheck);
-                detailsAdapterB.notifyDataSetChanged();
-            }
+            //if (reviewCheck.getTeamID() == teamID) {
+                //thisTeamsReviews.add(reviewCheck);
+                //detailsAdapterB.notifyDataSetChanged();
+            //}
 
             //Update average score NOTE TO SELF NOT DONE
             /*txtJDetails_avg.setText(dbHelper.averageRating(teamID) + " / 5");*/
-            String avgScore = dbHelper.averageRating(teamID);
-            txtJDetails_avg.setText(avgScore + " / 5");
-        }
+            //String avgScore = dbHelper.averageRating(teamID);
+            //txtJDetails_avg.setText(avgScore + " / 5");
+        //}
     }
 
     private void detailsBackListener() {
