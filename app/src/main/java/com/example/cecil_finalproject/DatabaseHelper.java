@@ -644,4 +644,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+    @SuppressLint("Range")
+    public ArrayList<Team> chooseTeamToUpdate(String user) {
+        ArrayList<Team> cTTU = new ArrayList<>();
+        String selectStatement = "SELECT * FROM " + teams_table_name + " WHERE trainerName = '" + user + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        Integer tID;
+        Float aBST;
+        String tN, pOn, pTw, pTh, pFo, pFi, pSi;
+        if (cursor.moveToFirst()) {
+            do {
+                tID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                aBST = cursor.getFloat(cursor.getColumnIndex("averageBST"));
+                tN = cursor.getString(cursor.getColumnIndex("trainerName"));
+                pOn = cursor.getString(cursor.getColumnIndex("pkmnOne"));
+                pTw = cursor.getString(cursor.getColumnIndex("pkmnTwo"));
+                pTh = cursor.getString(cursor.getColumnIndex("pkmnThree"));
+                pFo = cursor.getString(cursor.getColumnIndex("pkmnFour"));
+                pFi = cursor.getString(cursor.getColumnIndex("pkmnFive"));
+                pSi = cursor.getString(cursor.getColumnIndex("pkmnSix"));
+
+                Team teamAdded = new Team(tID, aBST, tN, pOn, pTw, pTh, pFo, pFi, pSi);
+
+                cTTU.add(teamAdded);
+            }
+            while (cursor.moveToNext());
+        }
+        return cTTU;
+    }
 }

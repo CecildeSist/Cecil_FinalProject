@@ -13,10 +13,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class ChooseTeamToUpdateActivity extends AppCompatActivity {
     TextView chooTeamT;
     ListView chooTeamL;
     Button chooTeamB;
+
+    DatabaseHelper dbHelper;
+    ArrayList<Team> oneUsersTeams = new ArrayList<>();
+    SearchWelcomeListAdapter oUTAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,10 @@ public class ChooseTeamToUpdateActivity extends AppCompatActivity {
 
         //Call button listener
         chTBListen();
+
+        //fill the list view
+        dbHelper = new DatabaseHelper(this);
+        getOneUsersTeams();
     }
 
     private void chTBListen() {
@@ -49,5 +59,13 @@ public class ChooseTeamToUpdateActivity extends AppCompatActivity {
                 startActivity(chTeam_to_chUp);
             }
         });
+    }
+
+    private void getOneUsersTeams() {
+        Intent cameFrom = getIntent();
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+        oUTAdapter = new SearchWelcomeListAdapter(this, dbHelper.chooseTeamToUpdate(loggedUser));
+        chooTeamL.setAdapter(oUTAdapter);
     }
 }
