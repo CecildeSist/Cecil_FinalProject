@@ -55,7 +55,16 @@ public class CreateTeamActivity extends AppCompatActivity {
         //Change the TextView at the top to display the current user's username
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
-        txtJCreate_header.setText(loggedUser +"'s New Team");
+        if (cameFrom.getSerializableExtra("Team to Update:") != null) {
+            btnJCreate_create.setText("Update Team");
+            txtJCreate_header.setText(loggedUser +"'s Team");
+        }
+        else {
+            btnJCreate_create.setText("Create Team");
+            txtJCreate_header.setText(loggedUser +"'s New Team");
+            createTeamListener();
+            backListener();
+        }
 
         //Populate the spinners
         listOfPokemon.add("Venusaur");
@@ -262,7 +271,7 @@ public class CreateTeamActivity extends AppCompatActivity {
                 String trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
                 Float averageBST;
 
-                //Step 2: Assign value to the objects NOTE TO SELF not done
+                //Step 2: Assign value to the objects
                 teamID = db.countRecordsFromTable("Teams") + 1;
                 trainerName = loggedUser;
                 pkmnA = pokemonA;
@@ -299,5 +308,39 @@ public class CreateTeamActivity extends AppCompatActivity {
                 startActivity(createToWelcome);
             }
         });
+    }
+
+    private void updateTeamListener() {
+        Intent cameFrom = getIntent();
+
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+        Intent createToWelcome = new Intent(CreateTeamActivity.this, WelcomeActivity.class);
+        createToWelcome.putExtra("Username:", loggedUser);
+
+        Team teamToUpdate = (Team) cameFrom.getSerializableExtra("Team to update:");
+        createToWelcome.putExtra("Team to update:", teamToUpdate);
+
+        Integer teamID;
+        String trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
+        Float averageBST;
+
+        //Assign value to the objects
+        teamID = teamToUpdate.getTeamID();
+        trainerName = loggedUser;
+
+        pkmnA = pokemonA;
+        pkmnB = pokemonB;
+        pkmnC = pokemonC;
+        pkmnD = pokemonD;
+        pkmnE = pokemonE;
+        pkmnF = pokemonF;
+        averageBST = db.teamAvgFloat(pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
+
+        Team updatedTeam = new Team(teamID, averageBST, trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
+
+        createToWelcome.putExtra("Updated Team:", updatedTeam);
+
+        //Update team in database helper
     }
 }
