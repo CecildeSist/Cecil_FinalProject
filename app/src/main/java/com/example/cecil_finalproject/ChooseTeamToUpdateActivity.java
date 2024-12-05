@@ -34,6 +34,7 @@ public class ChooseTeamToUpdateActivity extends AppCompatActivity {
         chooTeamT.setText(loggedUser + ", please click on the team you want to update.");
 
         //Call button listener
+        chTBListen();
     }
 
     private void chTBListen() {
