@@ -37,7 +37,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
 
         //Init dbHelper
         dbHelper = new DatabaseHelper(this);
-        dbHelper.initAllTables();
+        //dbHelper.initAllTables();
 
         tJLeave_num.setText("0");
         seekJLeave.setProgress(0);
@@ -83,10 +83,9 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 String userReviewing = (String) cameFrom.getSerializableExtra("Username:");
                 Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
 
-                Integer teamID = teamCaught.getTeamID();
-                dbHelper.addReview(reviewScore, teamID, userReviewing);
-
                 Integer rID = dbHelper.countRecordsFromTable("Reviews") + 1;
+                Integer teamID = teamCaught.getTeamID();
+                dbHelper.addReview(rID, reviewScore, teamID, userReviewing);
 
                 Intent reviewToDetails = new Intent(LeaveReviewActivity.this, TeamDetailsActivity.class);
                 reviewToDetails.putExtra("Team clicked:", teamCaught);

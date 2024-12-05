@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 46);
+        super(c, database_name, null, 50);
     }
 
     @Override
@@ -606,16 +606,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }*/
 
-    public void addReview(Integer rS, Integer tID, String uR) {
+    public void addReview(Integer rID, Integer rS, Integer tID, String uR) {
         //rS = reviewScore, tID = teamID, uR = userReviewing
         SQLiteDatabase db = this.getWritableDatabase();
-        Integer rID = countRecordsFromTable(reviews_table_name) + 1;
         String selectStatement = "INSERT INTO " + reviews_table_name + " (reviewID, reviewScore, teamID, userReviewing) VALUES (" + rID + ", " + rS + ", " + tID + ", '" + uR + "');";
         db.execSQL(selectStatement);
-        db = this.getReadableDatabase();
-        selectStatement = "SELECT COUNT(*) FROM " + reviews_table_name + " WHERE teamID = " + tID + ";";
-        Cursor cursor = db.rawQuery(selectStatement, null);
-        //Output the number to logcat NOTE TO SELF NOT DONE
         db.close();
         Log.d("Review added?", "yes");
     }
