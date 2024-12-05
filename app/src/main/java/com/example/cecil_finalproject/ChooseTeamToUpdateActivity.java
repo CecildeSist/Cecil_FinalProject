@@ -3,6 +3,7 @@ package com.example.cecil_finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,6 +46,9 @@ public class ChooseTeamToUpdateActivity extends AppCompatActivity {
         //fill the list view
         dbHelper = new DatabaseHelper(this);
         getOneUsersTeams();
+
+        //Call team click listener
+        teamChosenToUpdate();
     }
 
     private void chTBListen() {
@@ -67,5 +71,21 @@ public class ChooseTeamToUpdateActivity extends AppCompatActivity {
 
         oUTAdapter = new SearchWelcomeListAdapter(this, dbHelper.chooseTeamToUpdate(loggedUser));
         chooTeamL.setAdapter(oUTAdapter);
+    }
+
+    private void teamChosenToUpdate() {
+        chooTeamL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent chT_to_createTeam = new Intent(ChooseTeamToUpdateActivity.this, CreateTeamActivity.class);
+                Team teamUpdate = (Team) adapterView.getItemAtPosition(i);
+                chT_to_createTeam.putExtra("Username:", loggedUser);
+                chT_to_createTeam.putExtra("Team to update:", teamUpdate);
+                startActivity(chT_to_createTeam);
+            }
+        });
     }
 }
