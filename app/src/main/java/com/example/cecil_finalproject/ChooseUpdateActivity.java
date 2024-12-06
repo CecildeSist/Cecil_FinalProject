@@ -104,6 +104,11 @@ public class ChooseUpdateActivity extends AppCompatActivity {
                     chooseUp_to_chooseTeam.putExtra("Username:", loggedUser);
                     startActivity(chooseUp_to_chooseTeam);
                 }
+                else if (choice.equals("A review")) {
+                    Intent chooseUp_to_chooseRev = new Intent(ChooseUpdateActivity.this, ChooseReviewActivity.class);
+                    chooseUp_to_chooseRev.putExtra("Username:", loggedUser);
+                    startActivity(chooseUp_to_chooseRev);
+                }
             }
         });
     }
