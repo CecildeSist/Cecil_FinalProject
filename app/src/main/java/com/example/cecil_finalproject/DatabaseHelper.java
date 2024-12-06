@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 65);
+        super(c, database_name, null, 66);
     }
 
     @Override
@@ -641,7 +641,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             String updateStatement = "UPDATE " + users_table_name + " SET password = '" + newPass + "' WHERE username = '" + uname + "';";
-            cursor = db.rawQuery(updateStatement, null);
+            //Cursor newCursor = db.rawQuery(updateStatement, null);
+            db.execSQL(updateStatement);
 
             //String nP = cursor.getString(cursor.getColumnIndex("password"));
             //NOTE TO SELF COMMENT THIS LINE OUT ONCE YOU'VE FIXED THE FUNCTION
