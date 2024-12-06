@@ -342,5 +342,6 @@ public class CreateTeamActivity extends AppCompatActivity {
         createToWelcome.putExtra("Updated Team:", updatedTeam);
 
         //Update team in database helper
+        db.updateTeam(teamToUpdate, updatedTeam);
     }
 }

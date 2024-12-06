@@ -676,6 +676,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateTeam(Team tTU, Team uT) {
+        Integer oldTeamID = tTU.getTeamID();
+        String oldTrainerName = tTU.getUserTrainer();
+        String oldPkmnA = tTU.getPkmnA();
+        String oldPkmnB = tTU.getPkmnB();
+        String oldPkmnC = tTU.getPkmnC();
+        String oldPkmnD = tTU.getPkmnD();
+        String oldPkmnE = tTU.getPkmnE();
+        String oldPkmnF = tTU.getPkmnF();
+        Float oldAvgBST = tTU.getAverageTotal();
 
+        Integer newTeamID = uT.getTeamID();
+        String newTrainerName = uT.getUserTrainer();
+        String newPkmnA = uT.getPkmnA();
+        String newPkmnB = uT.getPkmnB();
+        String newPkmnC = uT.getPkmnC();
+        String newPkmnD = uT.getPkmnD();
+        String newPkmnE = uT.getPkmnE();
+        String newPkmnF = uT.getPkmnF();
+        Float newAvgBST = uT.getAverageTotal();
+
+        //Create SQLite statement for query
+        String queryStatement = "SELECT averageBST, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix FROM " + teams_table_name + " WHERE teamID = " + oldTeamID + ";";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(queryStatement, null);
+        if (cursor.moveToFirst()) {
+            String updateStatement = "UPDATE " + teams_table_name + " SET averageBST = " + newAvgBST + ", pkmnOne = '" + newPkmnA + "', pkmnTwo = '" + newPkmnB + "', pkmnThree = '" + newPkmnC + "', pkmnFour = '" + newPkmnD + "', pkmnFive = '" + newPkmnE + "', pkmnSix = '" + newPkmnF + "' WHERE teamID = " + oldTeamID + ";";
+            cursor = db.rawQuery(updateStatement, null);
+        }
+        db.close();
     }
 }
