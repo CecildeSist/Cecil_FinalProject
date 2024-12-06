@@ -17,7 +17,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     TextView upPassUname, errorOldMustMatch, errorNoChange;
     EditText oldPassJ, newPassJ;
     Button upPassYesJ, upPassNoJ;
-    DatabaseHelper dbHelper;
+    DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +70,19 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                 Intent cameFrom = getIntent();
                 String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
-                if (dbHelper.oldPassCorrect(loggedUser, oldPass) && !oldPass.equals(newPass)) {
+                String oldPassCorrect = dbHelper.oldPasswordCorrect(loggedUser);
+
+                if (!oldPass.equals(oldPassCorrect)) {
                     errorOldMustMatch.setVisibility(View.VISIBLE);
                     errorNoChange.setVisibility(View.INVISIBLE);
                 }
-                else if (dbHelper.oldPassCorrect(loggedUser, oldPass) && oldPass.equals(newPass)) {
+                else if (oldPass.equals(newPass)) {
                     errorOldMustMatch.setVisibility(View.INVISIBLE);
                     errorNoChange.setVisibility(View.VISIBLE);
                 }
                 else {
+                    errorOldMustMatch.setVisibility(View.INVISIBLE);
+                    errorNoChange.setVisibility(View.INVISIBLE);
                     //NOTE TO SELF NOT DONE
                     dbHelper.updatePass(loggedUser, newPass);
                     Intent upPass_to_Start = new Intent(UpdatePasswordActivity.this, MainActivity.class);

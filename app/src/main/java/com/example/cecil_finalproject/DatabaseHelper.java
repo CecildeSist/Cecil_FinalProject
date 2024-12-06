@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 55);
+        super(c, database_name, null, 65);
     }
 
     @Override
@@ -630,16 +630,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //NOTE TO SELF NOT DONE
+    @SuppressLint("Range")
     public void updatePass(String uname, String newPass) {
         //Step 1: Get writeable instance of user database
         SQLiteDatabase db = this.getWritableDatabase();
 
         String selectStatement = "SELECT password FROM " + users_table_name + " WHERE username = '" + uname + "';";
         Cursor cursor = db.rawQuery(selectStatement, null);
+        Log.d("query run?", "yes");
 
         if (cursor.moveToFirst()) {
             String updateStatement = "UPDATE " + users_table_name + " SET password = '" + newPass + "' WHERE username = '" + uname + "';";
             cursor = db.rawQuery(updateStatement, null);
+
+            //String nP = cursor.getString(cursor.getColumnIndex("password"));
+            //NOTE TO SELF COMMENT THIS LINE OUT ONCE YOU'VE FIXED THE FUNCTION
+            Log.d("New password:", newPass);
         }
 
         db.close();
@@ -672,6 +678,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        db.close();
         return cTTU;
     }
 
@@ -706,5 +713,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(updateStatement, null);
         }
         db.close();
+    }
+
+    @SuppressLint("Range")
+    public String oldPasswordCorrect(String user) {
+        String oPC = "fillerStatement";
+        String selectStatement = "SELECT password FROM " + users_table_name + " WHERE username = '" + user + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                oPC = cursor.getString(cursor.getColumnIndex("password"));
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        Log.d("oPC:", oPC);
+        return oPC;
     }
 }
