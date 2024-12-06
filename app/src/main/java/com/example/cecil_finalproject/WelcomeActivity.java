@@ -73,6 +73,11 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         fillListView();
+
+        if (cameFrom.getSerializableExtra("Updated Team:") != null) {
+            welcomeAdapter.notifyDataSetChanged();
+        }
+
         teamDetailsClick();
     }
 

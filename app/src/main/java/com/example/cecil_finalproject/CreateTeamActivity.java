@@ -55,9 +55,10 @@ public class CreateTeamActivity extends AppCompatActivity {
         //Change the TextView at the top to display the current user's username
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
-        if (cameFrom.getSerializableExtra("Team to Update:") != null) {
+        if (cameFrom.getSerializableExtra("Team to update:") != null) {
             btnJCreate_create.setText("Update Team");
             txtJCreate_header.setText(loggedUser +"'s Team");
+            updateTeamListener();
         }
         else {
             btnJCreate_create.setText("Create Team");
@@ -157,7 +158,7 @@ public class CreateTeamActivity extends AppCompatActivity {
 
         db.initAllTables();
 
-        //Call spinner listeners NOTE TO SELF not done
+        //Call spinner listeners
         firstSpinnerListener();
         secondSpinnerListener();
         thirdSpinnerListener();
@@ -165,8 +166,7 @@ public class CreateTeamActivity extends AppCompatActivity {
         fifthSpinnerListener();
         sixthSpinnerListener();
 
-        //Call button listeners NOTE TO SELF not done
-        createTeamListener();
+        //Call button listener
         backListener();
     }
 
@@ -311,37 +311,44 @@ public class CreateTeamActivity extends AppCompatActivity {
     }
 
     private void updateTeamListener() {
-        Intent cameFrom = getIntent();
+        btnJCreate_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
 
-        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
-        Intent createToWelcome = new Intent(CreateTeamActivity.this, WelcomeActivity.class);
-        createToWelcome.putExtra("Username:", loggedUser);
+                Intent createToWelcome = new Intent(CreateTeamActivity.this, WelcomeActivity.class);
+                createToWelcome.putExtra("Username:", loggedUser);
 
-        Team teamToUpdate = (Team) cameFrom.getSerializableExtra("Team to update:");
-        createToWelcome.putExtra("Team to update:", teamToUpdate);
+                Team teamToUpdate = (Team) cameFrom.getSerializableExtra("Team to update:");
+                createToWelcome.putExtra("Team to update:", teamToUpdate);
 
-        Integer teamID;
-        String trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
-        Float averageBST;
+                Integer teamID;
+                String trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF;
+                Float averageBST;
 
-        //Assign value to the objects
-        teamID = teamToUpdate.getTeamID();
-        trainerName = loggedUser;
+                //Assign value to the objects
+                teamID = teamToUpdate.getTeamID();
+                trainerName = loggedUser;
 
-        pkmnA = pokemonA;
-        pkmnB = pokemonB;
-        pkmnC = pokemonC;
-        pkmnD = pokemonD;
-        pkmnE = pokemonE;
-        pkmnF = pokemonF;
-        averageBST = db.teamAvgFloat(pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
+                pkmnA = pokemonA;
+                pkmnB = pokemonB;
+                pkmnC = pokemonC;
+                pkmnD = pokemonD;
+                pkmnE = pokemonE;
+                pkmnF = pokemonF;
+                averageBST = db.teamAvgFloat(pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
 
-        Team updatedTeam = new Team(teamID, averageBST, trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
+                Team updatedTeam = new Team(teamID, averageBST, trainerName, pkmnA, pkmnB, pkmnC, pkmnD, pkmnE, pkmnF);
 
-        createToWelcome.putExtra("Updated Team:", updatedTeam);
+                createToWelcome.putExtra("Old Team:", teamToUpdate);
+                createToWelcome.putExtra("Updated Team:", updatedTeam);
 
-        //Update team in database helper
-        db.updateTeam(teamToUpdate, updatedTeam);
+                //Update team in database helper
+                db.updateTeam(teamToUpdate, updatedTeam);
+                startActivity(createToWelcome);
+            }
+        });
     }
 }

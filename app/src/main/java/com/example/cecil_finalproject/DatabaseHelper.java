@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 66);
+        super(c, database_name, null, 74);
     }
 
     @Override
@@ -383,7 +383,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 pSi = cursor.getString(cursor.getColumnIndex("pkmnSix"));
 
                 Team teamAdded = new Team(tID, aBST, tN, pOn, pTw, pTh, pFo, pFi, pSi);
-
                 returnTeams.add(teamAdded);
             }
             while (cursor.moveToNext());
@@ -506,36 +505,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public ArrayList<Review> oneTeamsReviews(Team team) {
-        //This function retrieves all the reviews for ONE TEAM and ONE TEAM only
-        /*ArrayList<Review> oTR = new ArrayList<>();
-        Integer team_id = team.getTeamID();
-        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + team_id + ";";
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Integer reviewID, reviewScore;
-        String userReviewing;
-
-
-        //Run the query
-        Cursor cursor = db.rawQuery(selectStatement, null);
-        if (cursor.moveToFirst()) {
-            do {
-                reviewID = cursor.getInt(cursor.getColumnIndex("reviewID"));
-                reviewScore = cursor.getInt(cursor.getColumnIndex("reviewScore"));
-                //Team ID is always the integer team_id
-                userReviewing = cursor.getString(cursor.getColumnIndex("userReviewing"));
-
-                Review reviewAdded = new Review(reviewID, reviewScore, team_id, userReviewing);
-                oTR.add(reviewAdded);
-            }
-            while (cursor.moveToNext());
-        }
-
-        db.close();
-        return oTR;*/
         Integer tID = team.getTeamID();
         Log.d("team ID:", tID + "");
-        //ArrayList<Integer> applicableReviewIDs = new ArrayList<>();
         ArrayList<Review> listReviews = new ArrayList<>();
         String selectStatement = "Select * from " + reviews_table_name + " Where teamID = " + tID + ";";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -705,14 +676,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Float newAvgBST = uT.getAverageTotal();
 
         //Create SQLite statement for query
-        String queryStatement = "SELECT averageBST, pkmnOne, pkmnTwo, pkmnThree, pkmnFour, pkmnFive, pkmnSix FROM " + teams_table_name + " WHERE teamID = " + oldTeamID + ";";
+        String selectStatement = "SELECT * FROM " + teams_table_name + " WHERE teamID = " + oldTeamID + ";";
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(queryStatement, null);
-        if (cursor.moveToFirst()) {
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        /*if (cursor.moveToFirst()) {
             String updateStatement = "UPDATE " + teams_table_name + " SET averageBST = " + newAvgBST + ", pkmnOne = '" + newPkmnA + "', pkmnTwo = '" + newPkmnB + "', pkmnThree = '" + newPkmnC + "', pkmnFour = '" + newPkmnD + "', pkmnFive = '" + newPkmnE + "', pkmnSix = '" + newPkmnF + "' WHERE teamID = " + oldTeamID + ";";
-            cursor = db.rawQuery(updateStatement, null);
+            db.execSQL(updateStatement);
         }
+        db.close();*/
+
+        //Above code didn't work
+        //Step 1: Create SQLite statement for updating
+        if (cursor.moveToFirst()) {
+            String updateStatement = "UPDATE " + teams_table_name + " SET averageBST = " + newAvgBST + ", pkmnOne = '" + newPkmnA + "', pkmnTwo = '" + newPkmnB + "', pkmnThree = '" + newPkmnC + "', pkmnFour = '" + newPkmnD + "', pkmnFive = '" + newPkmnE + "', pkmnSix = '" + newPkmnF + "', trainerName = '" + newTrainerName + "' WHERE teamID = " + oldTeamID + ";";
+            db.execSQL(updateStatement);
+        }
+
         db.close();
     }
 
