@@ -777,6 +777,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Integer revID = 0;
 
+        Log.d("Num reviews:", countRecordsFromTable(reviews_table_name) + "");
+
         Cursor cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
             revID = cursor.getInt(cursor.getColumnIndex("reviewID"));

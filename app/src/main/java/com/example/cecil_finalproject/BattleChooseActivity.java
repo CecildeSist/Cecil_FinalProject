@@ -2,6 +2,7 @@ package com.example.cecil_finalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -58,5 +59,22 @@ public class BattleChooseActivity extends AppCompatActivity {
 
         bChooAdapter = new BattleChooseAdapter(this, dbHelper.welcomeTeams());
         baChooL.setAdapter(bChooAdapter);
+
+    }
+
+    private void backButtonListener() {
+        btnJBaChoo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+                Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
+
+                Intent battleToDetails = new Intent(BattleChooseActivity.this, TeamDetailsActivity.class);
+                battleToDetails.putExtra("Username:", loggedUser);
+                battleToDetails.putExtra("Team clicked:", teamCaught);
+                startActivity(battleToDetails);
+            }
+        });
     }
 }
