@@ -65,7 +65,6 @@ public class LeaveReviewActivity extends AppCompatActivity {
         seekBarListener();
     }
 
-    //NOTE TO SELF not done
     private void seekBarListener() {
         seekJLeave.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
