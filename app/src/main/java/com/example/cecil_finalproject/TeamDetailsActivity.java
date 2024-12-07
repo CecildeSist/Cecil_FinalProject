@@ -26,8 +26,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     ArrayList<Pokemon> allPokemon = new ArrayList<>();
     pkmnDetailsAdapter detailsAdapterA;
-    ArrayList<Review> thisTeamsReviews = new ArrayList<>();
-    ReviewAdapter detailsAdapterB;
+    static ArrayList<Review> thisTeamsReviews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class TeamDetailsActivity extends AppCompatActivity {
         lvlJDetails_reviews = findViewById(R.id.lvVTeamDetails_reviews);
 
         dbHelper = new DatabaseHelper(this);
-        dbHelper.initAllTables();
 
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
@@ -59,7 +57,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         //Fill the array list of reviews
         thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
-        detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
+        ReviewAdapter detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
         //detailsAdapterB.notifyDataSetChanged();
 
         lvlJDetails_reviews.setAdapter(detailsAdapterB);
@@ -96,6 +94,15 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         //Step 4: populate the first list view
         fillFirstList();
+
+        if (cameFrom.getSerializableExtra("Updated review:") != null) {
+            Review upRev = (Review) cameFrom.getSerializableExtra("Updated review:");
+            Integer upRevTID = upRev.getTeamID();
+            String upRevUser = upRev.getuReviewer();
+
+            thisTeamsReviews.add(upRev);
+            detailsAdapterB.notifyDataSetChanged();
+        }
     }
 
     private void detailsBackListener() {

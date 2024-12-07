@@ -83,7 +83,7 @@ public class ChooseReviewActivity extends AppCompatActivity {
                 Intent chR_to_Review = new Intent(ChooseReviewActivity.this, LeaveReviewActivity.class);
                 Team teamReviewUpdate = (Team) adapterView.getItemAtPosition(i);
                 chR_to_Review.putExtra("Username:", loggedUser);
-                chR_to_Review.putExtra("Update this review:", teamReviewUpdate);
+                chR_to_Review.putExtra("Update review:", teamReviewUpdate);
                 startActivity(chR_to_Review);
             }
         });

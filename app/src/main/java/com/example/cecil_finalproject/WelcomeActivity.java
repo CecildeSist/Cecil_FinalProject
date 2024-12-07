@@ -135,11 +135,21 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent cameFrom = getIntent();
                 String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+                if (cameFrom.getSerializableExtra("Updated review:") != null) {
+                    Review upRev = (Review) cameFrom.getSerializableExtra("Updated review:");
+                }
 
                 Intent welcomeToDetails = new Intent(WelcomeActivity.this, TeamDetailsActivity.class);
                 Team teamClicked = (Team) adapterView.getItemAtPosition(i);
                 welcomeToDetails.putExtra("Username:", loggedUser);
                 welcomeToDetails.putExtra("Team clicked:", teamClicked);
+                if (cameFrom.getSerializableExtra("Updated review:") != null) {
+                    Review upRev = (Review) cameFrom.getSerializableExtra("Updated review:");
+                    Integer tID = teamClicked.getTeamID();
+                    if (tID.equals(upRev.getTeamID())) {
+                        welcomeToDetails.putExtra("Updated review:", upRev);
+                    }
+                }
                 startActivity(welcomeToDetails);
             }
         });

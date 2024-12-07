@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 78);
+        super(c, database_name, null, 79);
     }
 
     @Override
@@ -763,6 +763,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectStatement, null);
 
         if (cursor.moveToFirst()) {
+            Log.d("selectStatement:", "returned true");
             String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + rS + " WHERE reviewID = " + rID + ";";
             db.execSQL(updateStatement);
         }
