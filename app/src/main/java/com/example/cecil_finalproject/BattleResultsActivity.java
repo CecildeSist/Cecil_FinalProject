@@ -39,13 +39,28 @@ public class BattleResultsActivity extends AppCompatActivity {
         //Set text NOTE TO SELF not done
         tJRes_curU.setText(loggedUser + "'s team has:");
         tJRes_curT.setText(curUTeam.getPkmnA() + ", " + curUTeam.getPkmnB() + ", " + curUTeam.getPkmnC() + ", " + curUTeam.getPkmnD() + ", " + curUTeam.getPkmnE() + ", and " + curUTeam.getPkmnF());
-        tJRes_curB.setText("Average Base Stat Total:" + curUTeam.getAverageTotal().toString());
+        tJRes_curB.setText("Average Base Stat Total: " + curUTeam.getAverageTotal().toString());
         tJRes_choU.setText(opposingTeam.getUserTrainer() + "'s team has:");
         tJRes_choT.setText(opposingTeam.getPkmnA() + ", " + opposingTeam.getPkmnB() + ", " + opposingTeam.getPkmnC() + ", " + opposingTeam.getPkmnD() + ", " + opposingTeam.getPkmnE() + ", and " + opposingTeam.getPkmnF());
-        tJRes_choB.setText("Average Base Stat Total:" + curUTeam.getAverageTotal().toString());
+        tJRes_choB.setText("Average Base Stat Total: " + opposingTeam.getAverageTotal().toString());
 
         //Set result text NOTE TO SELF NOT DONE
+        tJRes_res.setText(resultsMessage(curUTeam.getAverageTotal(), loggedUser, opposingTeam.getAverageTotal(), opposingTeam.getUserTrainer()));
 
         //call button listener NOTE TO SELF not done
+    }
+
+    private String resultsMessage(float firstAvg, String firstUser, float secondAvg, String secondUser) {
+        String rM = "";
+        if (firstAvg > secondAvg) {
+            rM = "It looks as if this match belongs to " + firstUser + "!";
+        }
+        else if (firstAvg < secondAvg) {
+            rM = "It looks as if this match belongs to " + secondUser + "!";
+        }
+        else {
+            rM = "This match looks like a real toss-up! There's no telling who will win!";
+        }
+        return rM;
     }
 }
