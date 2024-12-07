@@ -60,6 +60,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
         //Fill the array list of reviews
         thisTeamsReviews = dbHelper.oneTeamsReviews(teamCaught);
         detailsAdapterB = new ReviewAdapter(this, thisTeamsReviews);
+        //detailsAdapterB.notifyDataSetChanged();
+
         lvlJDetails_reviews.setAdapter(detailsAdapterB);
         if (cameFrom.getSerializableExtra("New Review:") != null) {
             /*Review reviewData = (Review) cameFrom.getSerializableExtra("New Review:");
@@ -145,5 +147,6 @@ public class TeamDetailsActivity extends AppCompatActivity {
     public void fillFirstList() {
         detailsAdapterA = new pkmnDetailsAdapter(this, allPokemon);
         lvlJDetails_team.setAdapter(detailsAdapterA);
+        //detailsAdapterA.notifyDataSetChanged();
     }
 }

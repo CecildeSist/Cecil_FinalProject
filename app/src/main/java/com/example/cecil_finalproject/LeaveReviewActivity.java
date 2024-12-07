@@ -150,10 +150,9 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 Integer tR_ID = teamReviewUpdate.getTeamID();
                 dbHelper.updateRev(tR_ID, userReviewing, reviewScore);
 
-                Intent reviewToDetails = new Intent(LeaveReviewActivity.this, TeamDetailsActivity.class);
-                reviewToDetails.putExtra("Team clicked:", teamReviewUpdate);
-                reviewToDetails.putExtra("Username:", userReviewing);
-                startActivity(reviewToDetails);
+                Intent reviewToWelcome = new Intent(LeaveReviewActivity.this, WelcomeActivity.class);
+                reviewToWelcome.putExtra("Username:", userReviewing);
+                startActivity(reviewToWelcome);
             }
         });
     }

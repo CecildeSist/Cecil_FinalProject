@@ -70,6 +70,7 @@ public class ChooseReviewActivity extends AppCompatActivity {
 
         chR_adapter = new ChooseReviewAdapter(this, dbHelper.teamsOneUserReviewed(loggedUser));
         chooRevL.setAdapter(chR_adapter);
+        chR_adapter.notifyDataSetChanged();
     }
 
     private void reviewChosenListener(){
