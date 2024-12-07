@@ -2,6 +2,7 @@ package com.example.cecil_finalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -45,20 +46,20 @@ public class LeaveReviewActivity extends AppCompatActivity {
         //Grab team clicked and logged-in user's name
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
-        if (cameFrom.getSerializableExtra("Update this review:") == null) {
-            Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
-            String teamCreator = teamCaught.getUserTrainer();
-            tJLeave_choU.setText("Review for " + teamCreator + "'s Team");
-            leaveReviewListener();
-            leaveLeaveListener();
-        }
-        else {
+        if (cameFrom.getSerializableExtra("Update this review:") != null) {
             Team teamReviewUpdate = (Team) cameFrom.getSerializableExtra("Update this review:");
             String tC = teamReviewUpdate.getUserTrainer();
             tJLeave_choU.setText("Review for " + tC + "'s Team");
             goToUpdateRevList();
             //Call function for updating a review
             updateReview();
+        }
+        else {
+            Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
+            String teamCreator = teamCaught.getUserTrainer();
+            tJLeave_choU.setText("Review for " + teamCreator + "'s Team");
+            leaveReviewListener();
+            leaveLeaveListener();
         }
 
         //Call seekbar and button listeners
@@ -145,13 +146,17 @@ public class LeaveReviewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent cameFrom = getIntent();
                 String userReviewing = (String) cameFrom.getSerializableExtra("Username:");
-                Team teamReviewUpdate = (Team) cameFrom.getSerializableExtra("Update this review:");
-
-                Integer tR_ID = teamReviewUpdate.getTeamID();
-                dbHelper.updateRev(tR_ID, userReviewing, reviewScore);
 
                 Intent reviewToWelcome = new Intent(LeaveReviewActivity.this, WelcomeActivity.class);
                 reviewToWelcome.putExtra("Username:", userReviewing);
+
+                Team teamReviewUpdate = (Team) cameFrom.getSerializableExtra("Update this review:");
+                reviewToWelcome.putExtra("Updated Team:", teamReviewUpdate);
+
+                Integer tR_ID = teamReviewUpdate.getTeamID();
+                Log.d("Review Score", String.valueOf(reviewScore));
+
+                dbHelper.updateRev(tR_ID, userReviewing, reviewScore);
                 startActivity(reviewToWelcome);
             }
         });

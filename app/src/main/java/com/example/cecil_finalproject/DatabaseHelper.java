@@ -340,7 +340,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectStatement, null);
         float averageRating = 2.5F;
-        int totalScore = 0;
+        float totalScore = 0;
         int numReviews = 0;
 
         if (cursor.moveToFirst()) {
