@@ -18,6 +18,9 @@ public class ChooseReviewActivity extends AppCompatActivity {
     ListView chooRevL;
     Button chooRevB;
 
+    DatabaseHelper dbHelper;
+    ChooseReviewAdapter chR_adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,10 @@ public class ChooseReviewActivity extends AppCompatActivity {
 
         //Call button listener
         chRevBListener();
+
+        //Fill the list view
+        dbHelper = new DatabaseHelper(this);
+        getTOUR();
     }
 
     private void chRevBListener() {
@@ -52,5 +59,14 @@ public class ChooseReviewActivity extends AppCompatActivity {
                 startActivity(chR_to_chUp);
             }
         });
+    }
+
+    private void getTOUR() {
+        //TOUR stands for "Teams One User Reviewed"
+        Intent cameFrom = getIntent();
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+        chR_adapter = new ChooseReviewAdapter(this, dbHelper.teamsOneUserReviewed(loggedUser));
+        chooRevL.setAdapter(chR_adapter);
     }
 }

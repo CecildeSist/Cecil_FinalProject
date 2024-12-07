@@ -59,7 +59,6 @@ public class SearchWelcomeListAdapter extends BaseAdapter {
 
         //Set GUI
         welCelUname.setText(team.getUserTrainer());
-        //NOTE TO SELF find out how to turn the float into a string
         welCelRate.setText(db.averageRating(teamID));
         welCelA.setText(team.getPkmnA());
         welCelB.setText(team.getPkmnB());

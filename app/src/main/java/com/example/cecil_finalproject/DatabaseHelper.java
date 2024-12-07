@@ -712,4 +712,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d("oPC:", oPC);
         return oPC;
     }
+
+    @SuppressLint("Range")
+    public ArrayList<Team> teamsOneUserReviewed(String username) {
+        //Step one: Select teamIDs from all reviews a user has made.
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE userReviewing = '" + username + "';";
+        ArrayList<Integer> teamIDs = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Integer teamID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                teamIDs.add(teamID);
+            }
+            while (cursor.moveToNext());
+        }
+
+        ArrayList<Team> tOUR = new ArrayList<>();
+        for (int i = 0; i < teamIDs.size(); i++) {
+            selectStatement = "SELECT * FROM " + teams_table_name + " WHERE teamID = " + teamIDs.get(i) + ";";
+            cursor = db.rawQuery(selectStatement, null);
+
+            if (cursor.moveToFirst()) {
+                Integer tID = i;
+                Float aBST = cursor.getFloat(cursor.getColumnIndex("averageBST"));
+                String tN = cursor.getString(cursor.getColumnIndex("trainerName"));
+                String pOn = cursor.getString(cursor.getColumnIndex("pkmnOne"));
+                String pTw = cursor.getString(cursor.getColumnIndex("pkmnTwo"));
+                String pTh = cursor.getString(cursor.getColumnIndex("pkmnThree"));
+                String pFo = cursor.getString(cursor.getColumnIndex("pkmnFour"));
+                String pFi = cursor.getString(cursor.getColumnIndex("pkmnFive"));
+                String pSi = cursor.getString(cursor.getColumnIndex("pkmnSix"));
+
+                Team teamAtI = new Team(tID, aBST, tN, pOn, pTw, pTh, pFo, pFi, pSi);
+                tOUR.add(teamAtI);
+            }
+        }
+        db.close();
+        return tOUR;
+    }
 }
