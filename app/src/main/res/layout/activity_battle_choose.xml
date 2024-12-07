@@ -19,6 +19,7 @@
         android:textAlignment="center"
         android:textColor="#FE5151"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtVBaChoo_userPlease"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,44 +27,38 @@
         android:id="@+id/txtVBaChoo_userPlease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:fontFamily="sans-serif-medium"
         android:text="CURRENT USER, please choose your team."
         android:textColor="#FDCE40"
+        app:layout_constraintBottom_toTopOf="@+id/baChoo_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVBattleChoose_trainerNames" />
-
-    <Spinner
-        android:id="@+id/spnVBattleChoose_teams"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="1dp"
-        android:backgroundTint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVBaChoo_userPlease" />
 
     <Button
         android:id="@+id/btnVBattleChoose_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#FDCE40"
         android:text="Go Back"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/imgBtnVBaChoo_battle"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnVBaChoo_battle" />
-
-    <ImageButton
-        android:id="@+id/imgBtnVBaChoo_battle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FDCE40"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnVBattleChoose_teams"
-        app:srcCompat="@drawable/battlebutton" />
+        app:layout_constraintTop_toBottomOf="@+id/baChoo_list" />
+
+    <ListView
+        android:id="@+id/baChoo_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnVBattleChoose_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVBaChoo_userPlease" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
