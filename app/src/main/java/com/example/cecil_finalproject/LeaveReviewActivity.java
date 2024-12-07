@@ -56,7 +56,8 @@ public class LeaveReviewActivity extends AppCompatActivity {
             Team teamReviewUpdate = (Team) cameFrom.getSerializableExtra("Update this review:");
             String tC = teamReviewUpdate.getUserTrainer();
             tJLeave_choU.setText("Review for " + tC + "'s Team");
-            //Call functions for updating a review and going back NOTE TO SELF NOT DONE
+            //Call functions for updating a review NOTE TO SELF NOT DONE
+            goToUpdateRevList();
         }
 
         //Call seekbar and button listeners
@@ -107,7 +108,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     private void leaveLeaveListener() {
         bJLeave_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +121,20 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 reviewToDetails.putExtra("Team clicked:", teamCaught);
                 reviewToDetails.putExtra("Username:", userReviewing);
                 startActivity(reviewToDetails);
+            }
+        });
+    }
+
+    private void goToUpdateRevList() {
+        bJLeave_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String userReviewing = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent revToChooseRev = new Intent(LeaveReviewActivity.this, ChooseReviewActivity.class);
+                revToChooseRev.putExtra("Username:", userReviewing);
+                startActivity(revToChooseRev);
             }
         });
     }
