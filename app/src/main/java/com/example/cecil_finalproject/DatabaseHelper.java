@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 81);
+        super(c, database_name, null, 82);
     }
 
     @Override
@@ -754,10 +754,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public void updateRev(Integer tID, String uR, Integer rS) {
+    public void updateRev(Review oldRev, Review newRev) {
         //tID means "team ID," uR means "userReviewing," rS means "reviewScore"
         //Step 1: Create select query
-        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
+        /*String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectStatement, null);
@@ -781,26 +781,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
 
+        db.close();*/
+
+        Integer oldReviewID = oldRev.getRevID();
+
+        Integer newRevScore = newRev.getRevScore();
+
+        //Create SQLite statement
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE reviewID = " + oldReviewID;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if (cursor.moveToFirst()) {
+            String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + newRevScore + " WHERE reviewID = " + oldReviewID + ";";
+            db.execSQL(updateStatement);
+        }
+
         db.close();
     }
 
-    /*@SuppressLint("Range")
-    public Integer selectReviewClicked(String uR, Integer tID) {
+    @SuppressLint("Range")
+    public Review selectReviewClicked(String uR, Integer tID) {
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Integer revID = 0;
+        Integer revID, revScore, teamID;
+        String reviewer;
+        Review oldReview = null;
 
-        Log.d("Num reviews:", countRecordsFromTable(reviews_table_name) + "");
+        Log.d("Num all reviews:", countRecordsFromTable(reviews_table_name) + "");
 
         Cursor cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
             do {
                 revID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+                revScore = cursor.getInt(cursor.getColumnIndex("reviewScore"));
+                teamID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                reviewer = cursor.getString(cursor.getColumnIndex("userReviewing"));
+                oldReview = new Review(revID, revScore, teamID, reviewer);
             }
             while (cursor.moveToNext());
         }
         db.close();
-        return revID;
-    }*/
+        return oldReview;
+    }
 }

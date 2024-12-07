@@ -148,27 +148,31 @@ public class LeaveReviewActivity extends AppCompatActivity {
         bJLeave_rev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dbHelper = new DatabaseHelper(LeaveReviewActivity.this);
                 Intent cameFrom = getIntent();
-                String userReviewing = (String) cameFrom.getSerializableExtra("Username:");
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
                 Intent reviewToWelcome = new Intent(LeaveReviewActivity.this, WelcomeActivity.class);
-                reviewToWelcome.putExtra("Username:", userReviewing);
+                reviewToWelcome.putExtra("Username:", loggedUser);
 
                 Team teamReviewUpdate = (Team) cameFrom.getSerializableExtra("Update review:");
                 reviewToWelcome.putExtra("Updated Team:", teamReviewUpdate);
 
-                Integer tR_ID = teamReviewUpdate.getTeamID();
+                Integer t_ID = teamReviewUpdate.getTeamID();
                 Log.d("Review Score", String.valueOf(reviewScore));
 
-                Review revToUpdate;
+                Review oldReview = dbHelper.selectReviewClicked(loggedUser, t_ID);
+                Integer r_ID = oldReview.getRevID();
 
-                //Integer rID = dbHelper.selectReviewClicked(userReviewing, tR_ID);
                 //Log.d("review ID:", rID + "");
 
-                dbHelper.updateRev(tR_ID, userReviewing, reviewScore);
+                //dbHelper.updateRev(t_ID, loggedUser, reviewScore);
 
-                /*Review updatedReview = new Review(reviewScore, tR_ID, userReviewing);
-                reviewToWelcome.putExtra("Updated review:", updatedReview);*/
+                Review updatedReview = new Review(r_ID, reviewScore, t_ID, loggedUser);
+                reviewToWelcome.putExtra("Old review:", oldReview);
+                reviewToWelcome.putExtra("Updated review:", updatedReview);
+
+                dbHelper.updateRev(oldReview, updatedReview);
                 startActivity(reviewToWelcome);
             }
         });
