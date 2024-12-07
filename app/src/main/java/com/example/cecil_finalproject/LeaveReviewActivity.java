@@ -161,13 +161,13 @@ public class LeaveReviewActivity extends AppCompatActivity {
 
                 Review revToUpdate;
 
-                Integer rID = dbHelper.selectReviewClicked(userReviewing, tR_ID);
-                Log.d("review ID:", rID + "");
+                //Integer rID = dbHelper.selectReviewClicked(userReviewing, tR_ID);
+                //Log.d("review ID:", rID + "");
 
-                dbHelper.updateRev(tR_ID, userReviewing, reviewScore, rID);
+                dbHelper.updateRev(tR_ID, userReviewing, reviewScore);
 
-                Review updatedReview = new Review(rID, reviewScore, tR_ID, userReviewing);
-                reviewToWelcome.putExtra("Updated review:", updatedReview);
+                /*Review updatedReview = new Review(reviewScore, tR_ID, userReviewing);
+                reviewToWelcome.putExtra("Updated review:", updatedReview);*/
                 startActivity(reviewToWelcome);
             }
         });

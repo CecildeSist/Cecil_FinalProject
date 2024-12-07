@@ -44,7 +44,7 @@ public class BattleChooseActivity extends AppCompatActivity {
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
         Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
 
-        txtJBaChoo_userVersusUser.setText(loggedUser + "VERSUS " + teamCaught.getUserTrainer() + "!");
+        txtJBaChoo_userVersusUser.setText(loggedUser + " VERSUS " + teamCaught.getUserTrainer() + "!");
         txtJBaChoo_userPlease.setText(loggedUser +", please choose a team.");
 
         dbHelper = new DatabaseHelper(this);
@@ -59,6 +59,8 @@ public class BattleChooseActivity extends AppCompatActivity {
 
         bChooAdapter = new BattleChooseAdapter(this, dbHelper.welcomeTeams());
         baChooL.setAdapter(bChooAdapter);
+
+        backButtonListener();
 
     }
 

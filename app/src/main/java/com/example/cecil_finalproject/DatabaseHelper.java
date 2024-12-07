@@ -754,7 +754,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public void updateRev(Integer tID, String uR, Integer rS, Integer rID) {
+    public void updateRev(Integer tID, String uR, Integer rS) {
         //tID means "team ID," uR means "userReviewing," rS means "reviewScore"
         //Step 1: Create select query
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
@@ -763,14 +763,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectStatement, null);
 
         if (cursor.moveToFirst()) {
-            Log.d("selectStatement:", "returned true");
-            String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + rS + " WHERE reviewID = " + rID + ";";
-            db.execSQL(updateStatement);
+            do {
+                Log.d("selectStatement:", "returned true");
+                String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + rS + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
+                db.execSQL(updateStatement);
+            }
+            while (cursor.moveToNext());
         }
         db.close();
     }
 
-    @SuppressLint("Range")
+    /*@SuppressLint("Range")
     public Integer selectReviewClicked(String uR, Integer tID) {
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -781,9 +784,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(selectStatement, null);
         if (cursor.moveToFirst()) {
-            revID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+            do {
+                revID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+            }
+            while (cursor.moveToNext());
         }
-
+        db.close();
         return revID;
-    }
+    }*/
 }
