@@ -45,12 +45,22 @@ public class LeaveReviewActivity extends AppCompatActivity {
         //Grab team clicked and logged-in user's name
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
-        Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
+        if (cameFrom.getSerializableExtra("Update this review:") == null) {
+            Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
+            String teamCreator = teamCaught.getUserTrainer();
+            tJLeave_choU.setText("Review for " + teamCreator + "'s Team");
+            leaveReviewListener();
+            leaveLeaveListener();
+        }
+        else {
+            Team teamReviewUpdate = (Team) cameFrom.getSerializableExtra("Update this review:");
+            String tC = teamReviewUpdate.getUserTrainer();
+            tJLeave_choU.setText("Review for " + tC + "'s Team");
+            //Call functions for updating a review and going back NOTE TO SELF NOT DONE
+        }
 
-        //Call seekbar and button listeners NOTE TO SELF not done
+        //Call seekbar and button listeners
         seekBarListener();
-        leaveReviewListener();
-        leaveLeaveListener();
     }
 
     //NOTE TO SELF not done
@@ -74,7 +84,6 @@ public class LeaveReviewActivity extends AppCompatActivity {
         });
     }
 
-    //NOTE TO SELF not done
     private void leaveReviewListener() {
         bJLeave_rev.setOnClickListener(new View.OnClickListener() {
             @Override

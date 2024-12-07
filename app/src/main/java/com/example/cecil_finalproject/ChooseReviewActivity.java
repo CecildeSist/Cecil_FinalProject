@@ -3,6 +3,7 @@ package com.example.cecil_finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class ChooseReviewActivity extends AppCompatActivity {
         //Fill the list view
         dbHelper = new DatabaseHelper(this);
         getTOUR();
+        reviewChosenListener();
     }
 
     private void chRevBListener() {
@@ -68,5 +70,21 @@ public class ChooseReviewActivity extends AppCompatActivity {
 
         chR_adapter = new ChooseReviewAdapter(this, dbHelper.teamsOneUserReviewed(loggedUser));
         chooRevL.setAdapter(chR_adapter);
+    }
+
+    private void reviewChosenListener(){
+        chooRevL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent chR_to_Review = new Intent(ChooseReviewActivity.this, LeaveReviewActivity.class);
+                Team teamReviewUpdate = (Team) adapterView.getItemAtPosition(i);
+                chR_to_Review.putExtra("Username:", loggedUser);
+                chR_to_Review.putExtra("Update this review:", teamReviewUpdate);
+                startActivity(chR_to_Review);
+            }
+        });
     }
 }
