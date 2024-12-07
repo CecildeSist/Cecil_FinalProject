@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 80);
+        super(c, database_name, null, 81);
     }
 
     @Override
@@ -770,6 +770,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+
+        selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Integer newScore = cursor.getInt(cursor.getColumnIndex("reviewScore"));
+                Log.d("New Score:", newScore + "");
+            }
+            while (cursor.moveToNext());
+        }
+
         db.close();
     }
 

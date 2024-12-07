@@ -3,6 +3,7 @@ package com.example.cecil_finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -61,6 +62,7 @@ public class BattleChooseActivity extends AppCompatActivity {
         baChooL.setAdapter(bChooAdapter);
 
         backButtonListener();
+        teamChosen();
 
     }
 
@@ -76,6 +78,25 @@ public class BattleChooseActivity extends AppCompatActivity {
                 battleToDetails.putExtra("Username:", loggedUser);
                 battleToDetails.putExtra("Team clicked:", teamCaught);
                 startActivity(battleToDetails);
+            }
+        });
+    }
+
+    private void teamChosen() {
+        baChooL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent chooseBa_to_results = new Intent(BattleChooseActivity.this, BattleResultsActivity.class);
+                Team teamChosen = (Team) adapterView.getItemAtPosition(i);
+                chooseBa_to_results.putExtra("Team chosen:", teamChosen);
+                chooseBa_to_results.putExtra("Username:", loggedUser);
+                Team opposingTeam = (Team) cameFrom.getSerializableExtra("Team clicked:");
+                chooseBa_to_results.putExtra("Opposing team:", opposingTeam);
+
+                startActivity(chooseBa_to_results);
             }
         });
     }
