@@ -12,7 +12,6 @@
         android:id="@+id/txtVLeaveReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="54dp"
         android:fontFamily="sans-serif-black"
@@ -21,6 +20,7 @@
         android:textColor="#FE5151"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/txtVLeaveReview_number"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

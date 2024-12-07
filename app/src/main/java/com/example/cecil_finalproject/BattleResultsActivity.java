@@ -2,6 +2,7 @@ package com.example.cecil_finalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -44,10 +45,11 @@ public class BattleResultsActivity extends AppCompatActivity {
         tJRes_choT.setText(opposingTeam.getPkmnA() + ", " + opposingTeam.getPkmnB() + ", " + opposingTeam.getPkmnC() + ", " + opposingTeam.getPkmnD() + ", " + opposingTeam.getPkmnE() + ", and " + opposingTeam.getPkmnF());
         tJRes_choB.setText("Average Base Stat Total: " + opposingTeam.getAverageTotal().toString());
 
-        //Set result text NOTE TO SELF NOT DONE
+        //Set result text
         tJRes_res.setText(resultsMessage(curUTeam.getAverageTotal(), loggedUser, opposingTeam.getAverageTotal(), opposingTeam.getUserTrainer()));
 
         //call button listener NOTE TO SELF not done
+        backButtonListener();
     }
 
     private String resultsMessage(float firstAvg, String firstUser, float secondAvg, String secondUser) {
@@ -62,5 +64,21 @@ public class BattleResultsActivity extends AppCompatActivity {
             rM = "This match looks like a real toss-up! There's no telling who will win!";
         }
         return rM;
+    }
+
+    private void backButtonListener() {
+        btnJRes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+                Team opposingTeam = (Team) cameFrom.getSerializableExtra("Opposing team:");
+
+                Intent resultsToDetails = new Intent(BattleResultsActivity.this, TeamDetailsActivity.class);
+                resultsToDetails.putExtra("Username:", loggedUser);
+                resultsToDetails.putExtra("Team clicked:", opposingTeam);
+                startActivity(resultsToDetails);
+            }
+        });
     }
 }

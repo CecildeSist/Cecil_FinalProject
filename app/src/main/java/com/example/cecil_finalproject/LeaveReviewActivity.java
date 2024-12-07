@@ -55,6 +55,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
             goToUpdateRevList();
             //Call function for updating a review
             updateReview();
+            upLeave();
         }
         else {
             Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
@@ -171,5 +172,20 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 startActivity(reviewToWelcome);
             }
         });
+    }
+
+    private void upLeave() {
+        bJLeave_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String userReviewing = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent lR_to_chooseRev = new Intent(LeaveReviewActivity.this, ChooseReviewActivity.class);
+                lR_to_chooseRev.putExtra("Username:", userReviewing);
+                startActivity(lR_to_chooseRev);
+            }
+        });
+
     }
 }
