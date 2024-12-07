@@ -156,7 +156,11 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 Integer tR_ID = teamReviewUpdate.getTeamID();
                 Log.d("Review Score", String.valueOf(reviewScore));
 
-                dbHelper.updateRev(tR_ID, userReviewing, reviewScore);
+                Review revToUpdate;
+
+                Integer rID = dbHelper.selectReviewClicked(userReviewing, tR_ID);
+
+                dbHelper.updateRev(tR_ID, userReviewing, reviewScore, rID);
                 startActivity(reviewToWelcome);
             }
         });

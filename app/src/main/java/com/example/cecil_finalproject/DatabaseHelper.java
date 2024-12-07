@@ -753,7 +753,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return tOUR;
     }
 
-    public void updateRev(Integer tID, String uR, Integer rS) {
+    @SuppressLint("Range")
+    public void updateRev(Integer tID, String uR, Integer rS, Integer rID) {
         //tID means "team ID," uR means "userReviewing," rS means "reviewScore"
         //Step 1: Create select query
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
@@ -762,9 +763,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectStatement, null);
 
         if (cursor.moveToFirst()) {
-            String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + rS + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
+            String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + rS + " WHERE reviewID = " + rID + ";";
             db.execSQL(updateStatement);
         }
         db.close();
+    }
+
+    @SuppressLint("Range")
+    public Integer selectReviewClicked(String uR, Integer tID) {
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Integer revID = 0;
+
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            revID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+        }
+
+        return revID;
     }
 }
