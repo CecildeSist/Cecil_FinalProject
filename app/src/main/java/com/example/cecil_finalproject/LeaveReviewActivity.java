@@ -107,13 +107,19 @@ public class LeaveReviewActivity extends AppCompatActivity {
             }
         });
     }
-
-    //NOTE TO SELF not done
+    
     private void leaveLeaveListener() {
         bJLeave_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String userReviewing = (String) cameFrom.getSerializableExtra("Username:");
+                Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");
 
+                Intent reviewToDetails = new Intent(LeaveReviewActivity.this, TeamDetailsActivity.class);
+                reviewToDetails.putExtra("Team clicked:", teamCaught);
+                reviewToDetails.putExtra("Username:", userReviewing);
+                startActivity(reviewToDetails);
             }
         });
     }
