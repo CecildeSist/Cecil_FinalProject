@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 76);
+        super(c, database_name, null, 77);
     }
 
     @Override
@@ -751,5 +751,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
         return tOUR;
+    }
+
+    public void updateRev(Integer tID, String uR, Integer rS) {
+        //tID means "team ID," uR means "userReviewing," rS means "reviewScore"
+        //Step 1: Create select query
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if (cursor.moveToFirst()) {
+            String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + rS + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
+            db.execSQL(updateStatement);
+        }
+        db.close();
     }
 }
