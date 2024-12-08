@@ -9,13 +9,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-//Make a different adapter for the search page and name it differently so the professor doesn't get confused. You accidentally made an adapter meant to work for both the Search and Welcome pages,
-//but that isn't possible.
-public class SearchWelcomeListAdapter extends BaseAdapter {
+public class SearchAdapterREAL extends BaseAdapter {
     Context context;
     ArrayList<Team> listOfTeams;
 
-    public SearchWelcomeListAdapter (Context c, ArrayList<Team> ls) {
+    public SearchAdapterREAL (Context c, ArrayList<Team> ls) {
         context = c;
         listOfTeams = ls;
     }
@@ -38,7 +36,7 @@ public class SearchWelcomeListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
-            LayoutInflater mInflater = (LayoutInflater) context.getSystemService(WelcomeActivity.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater mInflater = (LayoutInflater) context.getSystemService(SearchActivity.LAYOUT_INFLATER_SERVICE);
             view = mInflater.inflate(R.layout.search_welcome_cell, null);
         }
 

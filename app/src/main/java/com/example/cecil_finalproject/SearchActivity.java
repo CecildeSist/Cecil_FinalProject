@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
     Spinner spnJSearch_pkmn;
-    EditText etJSearch_user;
+    EditText etJSearch_user, searchLow, searchUp;
     ImageButton imgBtnJSearch;
     Button btnJSearch;
     ListView lvJSearch;
@@ -44,6 +44,8 @@ public class SearchActivity extends AppCompatActivity {
         spnJSearch_pkmn = findViewById(R.id.spnVSearch_pokemon);
         imgBtnJSearch = findViewById(R.id.imgbtnVSearch_search);
         btnJSearch = findViewById(R.id.btnVSearch_back);
+        searchLow = findViewById(R.id.search_lowerBound);
+        searchUp = findViewById(R.id.search_upper);
         lvJSearch = findViewById(R.id.lvVSearch);
 
         //Set up database helper
