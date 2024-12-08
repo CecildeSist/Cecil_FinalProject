@@ -1,5 +1,6 @@
 package com.example.cecil_finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,10 +32,14 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
         bJCon_y = findViewById(R.id.btnVConfirm_yes);
         bJCon_n = findViewById(R.id.btnVConfirm_no);
 
-        //Set the text NOTE TO SELF not done
+        //Set the text
+        Intent cameFrom = getIntent();
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+        tJCon_hold.setText("Hold your Horseas, " + loggedUser + "! Do you know the consequences of your actions?");
 
         //Call button listeners NOTE TO SELF not done
         conYesListener();
+        conNoListener();
     }
 
     //NOTE TO SELF not done
@@ -49,6 +54,16 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
 
     //NOTE TO SELF not done
     private void conNoListener() {
+        bJCon_n.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
+                Intent confirmD_selDel = new Intent(ConfirmDeleteActivity.this, SelectDeleteActivity.class);
+                confirmD_selDel.putExtra("Username:", loggedUser);
+                startActivity(confirmD_selDel);
+            }
+        });
     }
 }

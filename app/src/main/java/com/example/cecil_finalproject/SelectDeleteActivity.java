@@ -85,6 +85,11 @@ public class SelectDeleteActivity extends AppCompatActivity {
                     selDel_teamDel.putExtra("Username:", loggedUser);
                     startActivity(selDel_teamDel);
                 }
+                else if (deleteChoice.equals("My entire account")) {
+                    Intent selDel_confirmDel = new Intent(SelectDeleteActivity.this, ConfirmDeleteActivity.class);
+                    selDel_confirmDel.putExtra("Username:", loggedUser);
+                    startActivity(selDel_confirmDel);
+                }
             }
         });
     }

@@ -12,13 +12,13 @@
         android:id="@+id/txtVConfirm_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
         android:fontFamily="sans-serif-black"
-        android:text="THING 1"
+        android:text="Every review you've ever left!"
         android:textAlignment="center"
-        android:textColor="#FC5151"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/txtVConfirm_2"
         app:layout_constraintTop_toBottomOf="@+id/txtVConDel_thisIsWhat" />
 
     <TextView
@@ -39,13 +39,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:layout_marginEnd="28dp"
         android:fontFamily="sans-serif-medium"
-        android:text="This is what you'll lose if you delete THING:"
+        android:text="This is what you'll lose if you delete your account:"
         android:textAlignment="center"
-        android:textColor="#FC5151"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVConfirmDelete_holdOn" />
 
     <TextView
@@ -54,35 +54,37 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-black"
-        android:text="THING 2"
+        android:text="Every review you've ever received!"
         android:textAlignment="center"
-        android:textColor="#FC5151"
-        app:layout_constraintStart_toStartOf="@+id/txtVConfirm_1"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVConfirm_1" />
 
     <TextView
         android:id="@+id/txtVConfirm_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="22dp"
         android:fontFamily="sans-serif-black"
-        android:text="THING 3"
+        android:text="Every team you've ever made!"
         android:textAlignment="center"
-        android:textColor="#FC5151"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/txtVConfirm_2"
         app:layout_constraintTop_toBottomOf="@+id/txtVConfirm_2" />
 
     <TextView
         android:id="@+id/txtVConfirm_still"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="35dp"
+        android:layout_width="373dp"
+        android:layout_height="40dp"
         android:fontFamily="sans-serif-black"
-        android:text="Knowing this, do you STILL want to delete THING?"
+        android:text="Knowing this, do you STILL want to delete your account?"
         android:textAlignment="center"
         android:textColor="#FC5151"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnVConfirm_yes"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVConfirm_3" />
 
@@ -90,10 +92,10 @@
         android:id="@+id/btnVConfirm_yes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FCCD40"
+        android:backgroundTint="#FA5151"
         android:fontFamily="sans-serif-black"
         android:text="YES"
-        android:textColor="#FB5151"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnVConfirm_no"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,11 +105,11 @@
         android:id="@+id/btnVConfirm_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="97dp"
+        android:layout_marginBottom="304dp"
         android:backgroundTint="#FBCC40"
         android:text="No, please take me back!"
         android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVConfirm_still" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
