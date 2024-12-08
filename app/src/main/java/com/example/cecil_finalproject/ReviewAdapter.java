@@ -49,7 +49,7 @@ public class ReviewAdapter extends BaseAdapter {
         ImageView star4 = view.findViewById(R.id.imgStar4);
         ImageView star5 = view.findViewById(R.id.imgStar5);
 
-        //Set GUI NOTE TO SELF NOT DONE
+        //Set GUI
         Review rev = reviews.get(i);
         String reviewer = rev.getuReviewer();
         Integer revScore = rev.getRevScore();

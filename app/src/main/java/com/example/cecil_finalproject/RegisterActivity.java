@@ -47,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegisterBackListener();
     }
 
-    //NOTE TO SELF not done
     public void btnRegisterRegisterListener() {
         btnJRegister_register.setOnClickListener(new View.OnClickListener() {
             @Override

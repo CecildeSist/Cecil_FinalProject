@@ -83,7 +83,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                 else {
                     errorOldMustMatch.setVisibility(View.INVISIBLE);
                     errorNoChange.setVisibility(View.INVISIBLE);
-                    //NOTE TO SELF NOT DONE
                     dbHelper.updatePass(loggedUser, newPass);
                     Intent upPass_to_Start = new Intent(UpdatePasswordActivity.this, MainActivity.class);
                     startActivity(upPass_to_Start);

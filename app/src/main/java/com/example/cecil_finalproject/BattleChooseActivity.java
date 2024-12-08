@@ -40,7 +40,7 @@ public class BattleChooseActivity extends AppCompatActivity {
         baChooL = findViewById(R.id.baChoo_list);
         btnJBaChoo = findViewById(R.id.btnVBattleChoose_back);
 
-        //Set usernames in text boxes NOTE TO SELF NOT DONE
+        //Set usernames in text boxes
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
         Team teamCaught = (Team) cameFrom.getSerializableExtra("Team clicked:");

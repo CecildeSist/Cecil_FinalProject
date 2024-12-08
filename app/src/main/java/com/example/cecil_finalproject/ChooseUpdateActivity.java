@@ -54,7 +54,7 @@ public class ChooseUpdateActivity extends AppCompatActivity {
         //Call spinner listener
         chooseUpSpinListen();
 
-        //Call button listeners NOTE TO SELF NOT DONE
+        //Call button listeners
         chooseUpBack();
         chooseUpForward();
     }

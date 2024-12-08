@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 83);
+        super(c, database_name, null, 84);
     }
 
     @Override
@@ -214,7 +214,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }*/
         boolean vaLogOrNo;
-        Log.d("Data Passed:", uNameEntered + " " + pWordEntered);
         String selectStatement = "SELECT * from " + users_table_name + " WHERE username = '" + uNameEntered + "' AND password = '" + pWordEntered + "';";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectStatement, null);
@@ -534,28 +533,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean isReviewUnallowed(Team tV, String lU) {
         //tV stands for "Team Viewed." lU stands for "Logged User."
-        //NOTE TO SELF REMOVE LOG STATEMENTS AFTER ENSURING THIS FUNCTION WORKS
-        Log.d("String lU:", lU);
         boolean iRU = false;
         //Step 1: Check if the current user already reviewed this team.
         SQLiteDatabase db = this.getReadableDatabase();
         Integer tID = tV.getTeamID();
-        Log.d("Integer tID:", tID + "");
         String teamMaker = tV.getUserTrainer();
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + lU + "';";
-        Log.d("Statement?", "Exists");
         Cursor cursor = db.rawQuery(selectStatement, null);
-        Log.d("Cursor?", "Run");
         //Check if the person viewing the team is the creator or if the logged-in user has reviewed this team already
         if (cursor.moveToFirst()) {
             Integer count = cursor.getCount();
             if (count >= 1) {
-                Log.d("condition 1:", "fulfilled");
                 iRU = true;
             }
         }
         if (lU.equals(teamMaker)) {
-            Log.d("condition 2:", "fulfilled");
             iRU = true;
         }
         db.close();
@@ -585,7 +577,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //NOTE TO SELF NOT DONE
     @SuppressLint("Range")
     public void updatePass(String uname, String newPass) {
         //Step 1: Get writeable instance of user database
@@ -601,8 +592,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(updateStatement);
 
             //String nP = cursor.getString(cursor.getColumnIndex("password"));
-            //NOTE TO SELF COMMENT THIS LINE OUT ONCE YOU'VE FIXED THE FUNCTION
-            Log.d("New password:", newPass);
         }
 
         db.close();
@@ -694,7 +683,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         db.close();
-        Log.d("oPC:", oPC);
         return oPC;
     }
 
@@ -962,6 +950,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    @SuppressLint("Range")
     public void deleteAccount(String username) {
         //Step 1, delete all reviews this user ever gave
         String deleteStatement = "DELETE FROM " + reviews_table_name + " WHERE userReviewing = '" + username + "';";
@@ -971,10 +960,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Next, grab all the team IDs for teams they made and delete each review any of those teams ever got
         ArrayList<Integer> usersTeamIDs = new ArrayList<>();
-        String selectStatement = "SELECT COUNT(*) FROM " + teams_table_name + " WHERE trainerName = '" + username + "';";
-        Cursor cursor = db.rawQuery(selectStatement, null);
-        Integer count = cursor.getInt(0);
 
-        
+
+        String selectStatement = "SELECT * FROM " + teams_table_name + " WHERE trainerName = '" + username + "';";
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Integer tID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                usersTeamIDs.add(tID);
+            }
+            while (cursor.moveToNext());
+        }
+
+        for (int i = 0; i < usersTeamIDs.size(); i++) {
+            deleteStatement = "DELETE FROM " + reviews_table_name + " WHERE teamID = " + usersTeamIDs.get(i);
+            db.execSQL(deleteStatement);
+        }
+
+        //Delete each team the user made
+        deleteStatement = "DELETE FROM " + teams_table_name + " WHERE trainerName = '" + username + "';";
+        db.execSQL(deleteStatement);
+
+        //Delete the account
+        deleteStatement = "DELETE FROM " + users_table_name + " WHERE username = '" + username + "';";
+        db.execSQL(deleteStatement);
+
+        //Close the database
+        db.close();
     }
 }

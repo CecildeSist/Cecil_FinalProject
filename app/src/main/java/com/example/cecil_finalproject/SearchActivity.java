@@ -164,7 +164,6 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    //NOTE TO SELF not done
     private void searchListener() {
         imgBtnJSearch.setOnClickListener(new View.OnClickListener() {
             @Override

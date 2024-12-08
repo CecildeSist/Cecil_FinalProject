@@ -37,7 +37,7 @@ public class BattleResultsActivity extends AppCompatActivity {
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
         Team curUTeam = (Team) cameFrom.getSerializableExtra("Team chosen:");
         Team opposingTeam = (Team) cameFrom.getSerializableExtra("Opposing team:");
-        //Set text NOTE TO SELF not done
+        //Set text
         tJRes_curU.setText(loggedUser + "'s team has:");
         tJRes_curT.setText(curUTeam.getPkmnA() + ", " + curUTeam.getPkmnB() + ", " + curUTeam.getPkmnC() + ", " + curUTeam.getPkmnD() + ", " + curUTeam.getPkmnE() + ", and " + curUTeam.getPkmnF());
         tJRes_curB.setText("Average Base Stat Total: " + curUTeam.getAverageTotal().toString());
@@ -48,7 +48,7 @@ public class BattleResultsActivity extends AppCompatActivity {
         //Set result text
         tJRes_res.setText(resultsMessage(curUTeam.getAverageTotal(), loggedUser, opposingTeam.getAverageTotal(), opposingTeam.getUserTrainer()));
 
-        //call button listener NOTE TO SELF not done
+        //call button listener
         backButtonListener();
     }
 

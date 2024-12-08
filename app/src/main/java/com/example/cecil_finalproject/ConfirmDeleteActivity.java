@@ -16,6 +16,8 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
     TextView tJCon_hold, tJCon_this, tJCon_1, tJCon_2, tJCon_3, tJCon_know;
     Button bJCon_y, bJCon_n;
 
+    DatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +39,13 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
         tJCon_hold.setText("Hold your Horseas, " + loggedUser + "! Do you know the consequences of your actions?");
 
-        //Call button listeners NOTE TO SELF not done
+        dbHelper = new DatabaseHelper(this);
+
+        //Call button listeners
         conYesListener();
         conNoListener();
     }
 
-    //NOTE TO SELF not done
     private void conYesListener() {
         bJCon_y.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +53,9 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
                 Intent cameFrom = getIntent();
                 String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
-
+                Intent conD_main = new Intent(ConfirmDeleteActivity.this, MainActivity.class);
+                dbHelper.deleteAccount(loggedUser);
+                startActivity(conD_main);
             }
         });
     }

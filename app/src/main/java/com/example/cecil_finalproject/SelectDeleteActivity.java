@@ -67,7 +67,6 @@ public class SelectDeleteActivity extends AppCompatActivity {
         });
     }
 
-    //NOTE TO SELF not done
     private void selectDeleteProceedListener() {
         btnJSelectDelete_proceed.setOnClickListener(new View.OnClickListener() {
             @Override

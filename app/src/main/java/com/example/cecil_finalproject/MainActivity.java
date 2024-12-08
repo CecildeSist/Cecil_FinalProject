@@ -1,8 +1,8 @@
 //===
 //Author        : Cecil
 //Date          : November 4th, 2024
-//Description   : User logs in, can create team, search for teams, or delete one of the following: one of their teams, a review they made, or their entire account. Welcome screen shows all teams in database. User may make an account instead of logging in by clicking register button in log-in page and using the form
-//                on the "register" page. A team has six Pokemon on it. NOTE TO SELF FINISH LATER
+//Description   : User logs in, can create team, search for teams, or delete one of the following: one of their teams, a review they made, or their entire account. They may also update a team, review, or their password. Welcome screen shows all teams in database. User may make an account instead of logging in by clicking register button in log-in page and
+//                using the form on the "register" page. A team has six Pokemon on it. User can view the details of a team after logging in by clicking on it and "battle" it using any team that already exists or leave a review for it on a scale from 0 to 5.
 //===
 package com.example.cecil_finalproject;
 
