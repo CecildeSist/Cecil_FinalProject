@@ -40,6 +40,10 @@ public class DeleteReviewActivity extends AppCompatActivity {
 
         //Call button listener
         delRevBtn();
+
+        //Fill list view
+        dbHelper = new DatabaseHelper(this);
+        getOneUsersReviews();
     }
 
     private void delRevBtn() {
@@ -54,5 +58,14 @@ public class DeleteReviewActivity extends AppCompatActivity {
                 startActivity(dR_to_selDel);
             }
         });
+    }
+
+    private void getOneUsersReviews() {
+        Intent cameFrom = getIntent();
+        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+        delR_adapter = new DeleteReviewAdapter(this, dbHelper.oneUsersReviews(loggedUser));
+        delRev_L.setAdapter(delR_adapter);
+        delR_adapter.notifyDataSetChanged();
     }
 }
