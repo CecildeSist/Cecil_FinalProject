@@ -13,12 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginBottom="8dp"
         android:text="Average Base Stat Total Lower Bound"
         android:textColor="@color/yellow"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_pokemon" />
+        app:layout_constraintBottom_toTopOf="@+id/search_lowerBound"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/search_lowerBound"
@@ -81,23 +81,21 @@
     <ImageButton
         android:id="@+id/imgbtnVSearch_search"
         android:layout_width="254dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginBottom="48dp"
+        android:layout_height="0dp"
         android:backgroundTint="#FDCE40"
         android:scaleX=".6"
         android:scaleY=".6"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVSearch_back"
+        app:layout_constraintBottom_toTopOf="@+id/btnVSearch_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/search_upper"
         app:srcCompat="@drawable/searchbutton" />
 
     <Spinner
         android:id="@+id/spnVSearch_pokemon"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="6dp"
         android:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,13 +105,13 @@
         android:id="@+id/btnVSearch_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="113dp"
         android:backgroundTint="#FDCE40"
         android:text="Go Back"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_pokemon" />
 
     <ListView
         android:id="@+id/lvVSearch"
@@ -121,7 +119,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,22 +129,22 @@
         android:id="@+id/search_upper"
         android:layout_width="169dp"
         android:layout_height="45dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="82dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="83dp"
         android:ems="10"
         android:hint="Number"
         android:inputType="numberDecimal"
         android:textColorHint="#80FFD040"
-        app:layout_constraintBottom_toBottomOf="@+id/imgbtnVSearch_search"
+        app:layout_constraintBottom_toBottomOf="@+id/btnVSearch_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnVSearch_pokemon" />
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="8dp"
         android:text="Average Base Stat Total Upper Bound"
         android:textColor="@color/yellow"

@@ -29,9 +29,9 @@ public class SearchActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     static ArrayList<Integer> searchTeamIDs = new ArrayList<>();
     static ArrayList<Team> searchTeamsList = new ArrayList<>();
-    SearchWelcomeListAdapter searchAdapter;
+    SearchAdapterREAL searchAdapter;
 
-    String strSpecies, strType;
+    String strSpecies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,11 +170,23 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String strCreator = "";
+                Float bstLow = 0F;
+                //Highest possible average BST is 590 (a team of six Mewtwos)
+                Float bstHigh = 590F;
 
                 if(!etJSearch_user.getText().toString().isEmpty()) {
                     strCreator = etJSearch_user.getText().toString();
                 }
+                if(!searchLow.getText().toString().isEmpty()) {
+                    bstLow = Float.parseFloat(searchLow.getText().toString());
+                }
+                if (!searchUp.getText().toString().isEmpty()) {
+                    bstHigh = Float.parseFloat(searchUp.getText().toString());
+                }
+                searchTeamsList = dbHelper.filteredTeams(strCreator, strSpecies, bstLow, bstHigh);
 
+                searchAdapter = new SearchAdapterREAL(SearchActivity.this, searchTeamsList);
+                lvJSearch.setAdapter(searchAdapter);
 
             }
         });

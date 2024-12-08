@@ -562,21 +562,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return iRU;
     }
 
-    //NOTE TO SELF NOT DONE
-    /*public ArrayList<Integer> filterTeamIDs(String creator, String species, String type) {
-        ArrayList<Integer> listIDs = new ArrayList<>();
-        String selectStatement = "Select " + teams_table_name +".* from " + teams_table_name + " Where ";
-        if (creator.isEmpty()) {
-            selectStatement += "trainerName is not null ";
-        }
-        else {
-            selectStatement += "trainerName = '" + creator + "'";
-        }
-        if(!species.isEmpty()) {
-            selectStatement += " and pkmnOne = '" + species + "' or pkmnTwo = '" + species + "' or pkmnThree = '" + species + "' or pkmnFour = '" + species + "' or pkmnFive = '" + species + "' or pkmnFive = '" + species + "' or pkmnSix = '" + species + " ";
-        }
-    }*/
-
     public void addReview(Integer rID, Integer rS, Integer tID, String uR) {
         //rS = reviewScore, tID = teamID, uR = userReviewing
         SQLiteDatabase db = this.getWritableDatabase();
@@ -904,5 +889,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         return teamGrabbed;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Team> filteredTeams(String creator, String species, Float lowerBound, Float upperBound) {
+        //Step 1: Get readable databse
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Team filteredT;
+        //Heheh, T like testosterone.
+
+        ArrayList<Team> arrayListT = new ArrayList<>();
+
+        //Team ID, average BST, trainer name, Pokemon 1, Pokemon 2, Pokemon 3, Pokemon 4, Pokemon 5, Pokemon 6
+        Integer tID;
+        Float aBST;
+        String tN, pOn, pTw, pTh, pFo, pFi, pSi;
+
+        String selectStatement = "Select * from " + teams_table_name + " Where averageBST >= '" + lowerBound + "' and averageBST <= '" + upperBound + "' and ";
+        if (creator.isEmpty()) {
+            selectStatement += "trainerName is not null ";
+        }
+        else {
+            selectStatement += "trainerName = '" + creator + "' ";
+        }
+        if (!species.isEmpty()) {
+            selectStatement += "and pkmnOne = '" + species + "' or pkmnTwo = '" + species + "' or pkmnThree = '" + species + "' or pkmnFour = '" + species + "' or pkmnFive = '" + species + "' or pkmnSix = '" + species + "'";
+        }
+        selectStatement += ";";
+
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                tID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                aBST = cursor.getFloat(cursor.getColumnIndex("averageBST"));
+                tN = cursor.getString(cursor.getColumnIndex("trainerName"));
+                pOn = cursor.getString(cursor.getColumnIndex("pkmnOne"));
+                pTw = cursor.getString(cursor.getColumnIndex("pkmnTwo"));
+                pTh = cursor.getString(cursor.getColumnIndex("pkmnThree"));
+                pFo = cursor.getString(cursor.getColumnIndex("pkmnFour"));
+                pFi = cursor.getString(cursor.getColumnIndex("pkmnFive"));
+                pSi = cursor.getString(cursor.getColumnIndex("pkmnSix"));
+
+                filteredT = new Team(tID, aBST, tN, pOn, pTw, pTh, pFo, pFi, pSi);
+                arrayListT.add(filteredT);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return arrayListT;
     }
 }
