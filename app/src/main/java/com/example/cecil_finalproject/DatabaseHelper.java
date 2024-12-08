@@ -947,4 +947,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(deleteStatement);
         db.close();
     }
+
+    public void deleteTeam(Integer teamID) {
+        //First, delete all the reviews for the team
+        String deleteStatement = "DELETE FROM " + reviews_table_name + " WHERE teamID = " + teamID + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(deleteStatement);
+        //Next, delete the team itself
+
+        deleteStatement = "DELETE FROM " + teams_table_name + " WHERE teamID = " + teamID + ";";
+        db.execSQL(deleteStatement);
+
+        db.close();
+    }
 }
