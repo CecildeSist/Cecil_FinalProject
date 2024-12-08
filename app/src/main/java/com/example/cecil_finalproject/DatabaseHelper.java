@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String reviews_table_name = "Reviews";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 82);
+        super(c, database_name, null, 83);
     }
 
     @Override
@@ -754,7 +754,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public void updateRev(Integer newRevScore, Integer teamID, String uR) {
+    public void updateRev(Integer reviewID, Integer newRevScore) {
         //tID means "team ID," uR means "userReviewing," rS means "reviewScore"
         //Step 1: Create select query
         /*String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
@@ -787,10 +787,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + newRevScore + " WHERE teamID = " + teamID + " AND userReviewing = '" + uR + "';";
+        String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + newRevScore + " WHERE reviewID = " + reviewID + ";";
         db.execSQL(updateStatement);
 
         db.close();
+    }
+
+    @SuppressLint("Range")
+    public Integer grabReviewID(int team_ID, String loggedU) {
+        Log.d("team ID", team_ID + "");
+        Log.d("logged U", loggedU);
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamId = " + team_ID + " AND userReviewing = '" + loggedU + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        Integer reviewID = 99;
+        if (cursor.moveToFirst()) {
+            /*do {
+                reviewID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+            }
+            while (cursor.moveToNext());*/
+            reviewID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+        }
+        Log.d("reviewID:", reviewID + "");
+        return reviewID;
     }
 
     /*@SuppressLint("Range")
@@ -818,4 +838,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return oldReview;
     }*/
+
+    @SuppressLint("Range")
+    public ArrayList<Review> oneUsersReviews(String username) {
+        ArrayList<Review> listReviews = new ArrayList<>();
+        String selectStatement = "Select * from " + reviews_table_name + " Where userReviewing = '" + username + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        Integer revID, revScore, teID;
+        String uR;
+
+        if (cursor.moveToFirst()) {
+            do {
+                revID = cursor.getInt(cursor.getColumnIndex("reviewID"));
+                revScore = cursor.getInt(cursor.getColumnIndex("reviewScore"));
+                teID = cursor.getInt(cursor.getColumnIndex("teamID"));
+                uR = cursor.getString(cursor.getColumnIndex("userReviewing"));
+
+                Review rev = new Review(revID, revScore, teID, uR);
+                listReviews.add(rev);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return listReviews;
+    }
+
+    @SuppressLint("Range")
+    public Team teamForReviewClicked(Integer revID) {
+        Team tFRC;
+        String selectStatement = "SELECT teamID FROM " + reviews_table_name + " WHERE reviewID = " + revID + ";";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        int tID = 99;
+
+        if (cursor.moveToFirst()) {
+            do {
+                tID = cursor.getInt(cursor.getColumnIndex("teamID"));
+            }
+            while (cursor.moveToNext());
+        }
+
+        Log.d("team ID", tID + "");
+
+        Team teamGrabbed = null;
+
+        selectStatement = "SELECT * FROM " + teams_table_name + " WHERE teamID = " + tID + ";";
+        cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Float aBST = cursor.getFloat(cursor.getColumnIndex("averageBST"));
+                String tN = cursor.getString(cursor.getColumnIndex("trainerName"));
+                String pOn = cursor.getString(cursor.getColumnIndex("pkmnOne"));
+                String pTw = cursor.getString(cursor.getColumnIndex("pkmnTwo"));
+                String pTh = cursor.getString(cursor.getColumnIndex("pkmnThree"));
+                String pFo = cursor.getString(cursor.getColumnIndex("pkmnFour"));
+                String pFi = cursor.getString(cursor.getColumnIndex("pkmnFive"));
+                String pSi = cursor.getString(cursor.getColumnIndex("pkmnSix"));
+
+                teamGrabbed = new Team(tID, aBST, tN, pOn, pTw, pTh, pFo, pFi, pSi);
+            }
+            while (cursor.moveToNext());
+        }
+        return teamGrabbed;
+    }
 }

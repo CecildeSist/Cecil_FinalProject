@@ -13,21 +13,21 @@ import java.util.ArrayList;
 
 public class ChooseReviewAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Team> teamsReviewed;
+    ArrayList<Review> reviewsReviewed;
 
-    public ChooseReviewAdapter (Context c, ArrayList<Team> tR) {
+    public ChooseReviewAdapter (Context c, ArrayList<Review> rR) {
         context = c;
-        teamsReviewed = tR;
+        reviewsReviewed = rR;
     }
 
     @Override
     public int getCount() {
-        return teamsReviewed.size();
+        return reviewsReviewed.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return teamsReviewed.get(i);
+        return reviewsReviewed.get(i);
     }
 
     @Override
@@ -39,27 +39,19 @@ public class ChooseReviewAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
             LayoutInflater mInflater = (LayoutInflater) context.getSystemService(ChooseReviewActivity.LAYOUT_INFLATER_SERVICE);
-            view = mInflater.inflate(R.layout.cell_choose_review, null);
+            view = mInflater.inflate(R.layout.cell_new_choose_rev, null);
         }
 
-        Team t = teamsReviewed.get(i);
+        Review r = reviewsReviewed.get(i);
 
         //Find GUI elements
-        TextView chRU = view.findViewById(R.id.chRUUser);
-        TextView chR1 = view.findViewById(R.id.chROne);
-        TextView chR2 = view.findViewById(R.id.chRTwo);
-        TextView chR3 = view.findViewById(R.id.chRThree);
-        TextView chR4 = view.findViewById(R.id.chRFour);
-        TextView chR5 = view.findViewById(R.id.chRFive);
-        TextView chR6 = view.findViewById(R.id.chRSix);
+        TextView rID = view.findViewById(R.id.cNCR_rID);
+        TextView rS = view.findViewById(R.id.cNCR_rS);
+        TextView tID = view.findViewById(R.id.cNCR_tID);
 
-        chRU.setText(t.getUserTrainer());
-        chR1.setText(t.getPkmnA());
-        chR2.setText(t.getPkmnB());
-        chR3.setText(t.getPkmnC());
-        chR4.setText(t.getPkmnD());
-        chR5.setText(t.getPkmnE());
-        chR6.setText(t.getPkmnF());
+        rID.setText(r.getRevID().toString());
+        rS.setText(r.getRevScore().toString());
+        tID.setText(r.getTeamID().toString());
 
         return view;
     }

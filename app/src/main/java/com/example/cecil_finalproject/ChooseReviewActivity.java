@@ -68,7 +68,7 @@ public class ChooseReviewActivity extends AppCompatActivity {
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
-        chR_adapter = new ChooseReviewAdapter(this, dbHelper.teamsOneUserReviewed(loggedUser));
+        chR_adapter = new ChooseReviewAdapter(this, dbHelper.oneUsersReviews(loggedUser));
         chooRevL.setAdapter(chR_adapter);
         chR_adapter.notifyDataSetChanged();
     }
@@ -81,9 +81,19 @@ public class ChooseReviewActivity extends AppCompatActivity {
                 String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
                 Intent chR_to_Review = new Intent(ChooseReviewActivity.this, LeaveReviewActivity.class);
-                Team teamReviewUpdate = (Team) adapterView.getItemAtPosition(i);
+                /*Team teamReviewUpdate = (Team) adapterView.getItemAtPosition(i);
                 chR_to_Review.putExtra("Username:", loggedUser);
                 chR_to_Review.putExtra("Update review:", teamReviewUpdate);
+                startActivity(chR_to_Review);*/
+
+                Review reviewClicked = (Review) adapterView.getItemAtPosition(i);
+                Integer revID = reviewClicked.getRevID();
+
+                Team teamReviewed = dbHelper.teamForReviewClicked(revID);
+
+                chR_to_Review.putExtra("Username:", loggedUser);
+                chR_to_Review.putExtra("Review ID", revID);
+                chR_to_Review.putExtra("Update review:", teamReviewed);
                 startActivity(chR_to_Review);
             }
         });

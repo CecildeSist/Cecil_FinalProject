@@ -143,11 +143,11 @@ public class WelcomeActivity extends AppCompatActivity {
                 Team teamClicked = (Team) adapterView.getItemAtPosition(i);
                 welcomeToDetails.putExtra("Username:", loggedUser);
                 welcomeToDetails.putExtra("Team clicked:", teamClicked);
-                if (cameFrom.getSerializableExtra("Updated review:") != null) {
-                    Review upRev = (Review) cameFrom.getSerializableExtra("Updated review:");
+                if (cameFrom.getSerializableExtra("Updated Review:") != null) {
+                    Review upRev = (Review) cameFrom.getSerializableExtra("Updated Review:");
                     Integer tID = teamClicked.getTeamID();
                     if (tID.equals(upRev.getTeamID())) {
-                        welcomeToDetails.putExtra("Updated review:", upRev);
+                        welcomeToDetails.putExtra("Updated Review:", upRev);
                     }
                 }
                 startActivity(welcomeToDetails);

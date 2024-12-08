@@ -95,10 +95,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
         //Step 4: populate the first list view
         fillFirstList();
 
-        if (cameFrom.getSerializableExtra("Updated review:") != null) {
-            Review upRev = (Review) cameFrom.getSerializableExtra("Updated review:");
-            Integer upRevTID = upRev.getTeamID();
-            String upRevUser = upRev.getuReviewer();
+        if (cameFrom.getSerializableExtra("Updated Review:") != null) {
+            Review upRev = (Review) cameFrom.getSerializableExtra("Updated Review:");
 
             thisTeamsReviews.add(upRev);
             detailsAdapterB.notifyDataSetChanged();

@@ -158,7 +158,7 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 Team teamReviewUpdate = (Team) cameFrom.getSerializableExtra("Update review:");
                 reviewToWelcome.putExtra("Updated Team:", teamReviewUpdate);
 
-                Integer t_ID = teamReviewUpdate.getTeamID();
+                Integer t_ID = teamReviewUpdate.getTeamID() + 1;
                 Log.d("Review Score", String.valueOf(reviewScore));
 
                 //Review oldReview = dbHelper.selectReviewClicked(loggedUser, t_ID);
@@ -172,7 +172,12 @@ public class LeaveReviewActivity extends AppCompatActivity {
                 //reviewToWelcome.putExtra("Old review:", oldReview);
                 //reviewToWelcome.putExtra("Updated review:", updatedReview);
 
-                dbHelper.updateRev(reviewScore, t_ID, loggedUser);
+                Integer r_ID = (Integer) cameFrom.getSerializableExtra("Review ID");
+
+                dbHelper.updateRev(r_ID, reviewScore);
+
+                Review updatedReview = new Review(r_ID, reviewScore, t_ID, loggedUser);
+                reviewToWelcome.putExtra("Updated Review:", updatedReview);
                 startActivity(reviewToWelcome);
             }
         });
