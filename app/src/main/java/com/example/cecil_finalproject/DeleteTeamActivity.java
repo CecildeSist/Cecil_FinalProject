@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,6 +41,14 @@ public class DeleteTeamActivity extends AppCompatActivity {
 
         //Call button listener
         dTBack();
+
+        //fill list view
+        dbHelper = new DatabaseHelper(this);
+        td_adapter = new TeamDeleteAdapter(this, dbHelper.chooseTeamToUpdate(loggedUser));
+        dT_L.setAdapter(td_adapter);
+
+        //Call on-click listener
+        teamChosenToDelete();
     }
 
     private void dTBack() {
@@ -52,6 +61,23 @@ public class DeleteTeamActivity extends AppCompatActivity {
                 Intent delT_selDel = new Intent(DeleteTeamActivity.this, SelectDeleteActivity.class);
                 delT_selDel.putExtra("Username:", loggedUser);
                 startActivity(delT_selDel);
+            }
+        });
+    }
+
+    private void teamChosenToDelete() {
+        dT_L.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent selD_to_welc = new Intent(DeleteTeamActivity.this, WelcomeActivity.class);
+                selD_to_welc.putExtra("Username:", loggedUser);
+                Team teamToDelete = (Team) adapterView.getItemAtPosition(i);
+                Integer teamID = teamToDelete.getTeamID();
+                dbHelper.deleteTeam(teamID);
+                startActivity(selD_to_welc);
             }
         });
     }
