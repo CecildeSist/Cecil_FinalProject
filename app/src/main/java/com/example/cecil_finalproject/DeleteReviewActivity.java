@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,6 +45,8 @@ public class DeleteReviewActivity extends AppCompatActivity {
         //Fill list view
         dbHelper = new DatabaseHelper(this);
         getOneUsersReviews();
+
+        deleteReview();
     }
 
     private void delRevBtn() {
@@ -67,5 +70,25 @@ public class DeleteReviewActivity extends AppCompatActivity {
         delR_adapter = new DeleteReviewAdapter(this, dbHelper.oneUsersReviews(loggedUser));
         delRev_L.setAdapter(delR_adapter);
         delR_adapter.notifyDataSetChanged();
+    }
+
+    private void deleteReview() {
+        delRev_L.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                Intent delR_to_Welc = new Intent(DeleteReviewActivity.this, WelcomeActivity.class);
+
+                Review reviewToDelete = (Review) adapterView.getItemAtPosition(i);
+                Integer revID = reviewToDelete.getRevID();
+
+                dbHelper.deleteReview(revID);
+
+                delR_to_Welc.putExtra("Username:", loggedUser);
+                startActivity(delR_to_Welc);
+            }
+        });
     }
 }

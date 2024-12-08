@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="9dp"
         android:fontFamily="sans-serif-black"
-        android:text="USERNAME, please choose the review you want to delete."
+        android:text="USERNAME, please click on the review you want to delete. Make sure you're sure about this!"
         android:textAlignment="textStart"
         android:textColor="#FE5151"
         android:textSize="16sp"

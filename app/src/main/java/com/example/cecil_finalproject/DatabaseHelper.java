@@ -939,4 +939,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return arrayListT;
     }
+
+    public void deleteReview(Integer revID) {
+        String deleteStatement = "DELETE FROM " + reviews_table_name + " WHERE reviewID = " + revID + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(deleteStatement);
+        db.close();
+    }
 }
