@@ -961,4 +961,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+    public void deleteAccount(String username) {
+        //Step 1, delete all reviews this user ever gave
+        String deleteStatement = "DELETE FROM " + reviews_table_name + " WHERE userReviewing = '" + username + "';";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(deleteStatement);
+
+        //Next, grab all the team IDs for teams they made and delete each review any of those teams ever got
+        ArrayList<Integer> usersTeamIDs = new ArrayList<>();
+        String selectStatement = "SELECT COUNT(*) FROM " + teams_table_name + " WHERE trainerName = '" + username + "';";
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        Integer count = cursor.getInt(0);
+
+        
+    }
 }

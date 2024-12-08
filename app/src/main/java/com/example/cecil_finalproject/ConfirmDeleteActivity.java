@@ -47,12 +47,14 @@ public class ConfirmDeleteActivity extends AppCompatActivity {
         bJCon_y.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
 
             }
         });
     }
 
-    //NOTE TO SELF not done
     private void conNoListener() {
         bJCon_n.setOnClickListener(new View.OnClickListener() {
             @Override
