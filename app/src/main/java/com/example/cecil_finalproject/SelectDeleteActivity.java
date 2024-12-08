@@ -80,6 +80,11 @@ public class SelectDeleteActivity extends AppCompatActivity {
                     selDel_to_delRev.putExtra("Username:", loggedUser);
                     startActivity(selDel_to_delRev);
                 }
+                else if (deleteChoice.equals("A team I made")) {
+                    Intent selDel_teamDel = new Intent(SelectDeleteActivity.this, DeleteTeamActivity.class);
+                    selDel_teamDel.putExtra("Username:", loggedUser);
+                    startActivity(selDel_teamDel);
+                }
             }
         });
     }

@@ -37,7 +37,7 @@ public class DeleteReviewActivity extends AppCompatActivity {
         //Set the text.
         Intent cameFrom = getIntent();
         String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
-        delRev_U.setText(loggedUser + ", please choose the review you want to delete.");
+        delRev_U.setText(loggedUser + ", please click on the review you want to delete. Make sure you're sure about this!");
 
         //Call button listener
         delRevBtn();
