@@ -173,6 +173,7 @@ public class SearchActivity extends AppCompatActivity {
                     strCreator = etJSearch_user.getText().toString();
                 }
 
+
             }
         });
     }
