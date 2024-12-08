@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="USERNAME, please choose the team whose review you want to edit."
+        android:text="USERNAME, please choose the review you want to edit."
         android:textAlignment="textStart"
         android:textColor="@color/yellow"
         app:layout_constraintBottom_toTopOf="@+id/chooseReview_list"

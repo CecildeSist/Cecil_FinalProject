@@ -72,7 +72,14 @@ public class SelectDeleteActivity extends AppCompatActivity {
         btnJSelectDelete_proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent cameFrom = getIntent();
+                String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
 
+                if (deleteChoice.equals("A review I made")) {
+                    Intent selDel_to_delRev = new Intent(SelectDeleteActivity.this, DeleteReviewActivity.class);
+                    selDel_to_delRev.putExtra("Username:", loggedUser);
+                    startActivity(selDel_to_delRev);
+                }
             }
         });
     }
