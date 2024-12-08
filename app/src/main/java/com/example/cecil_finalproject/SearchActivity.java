@@ -187,6 +187,21 @@ public class SearchActivity extends AppCompatActivity {
                 searchAdapter = new SearchAdapterREAL(SearchActivity.this, searchTeamsList);
                 lvJSearch.setAdapter(searchAdapter);
 
+                lvJSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent cameFrom = getIntent();
+                        String loggedUser = (String) cameFrom.getSerializableExtra("Username:");
+
+                        Team teamClicked = (Team) adapterView.getItemAtPosition(i);
+
+                        Intent searchToDetails = new Intent(SearchActivity.this, TeamDetailsActivity.class);
+                        searchToDetails.putExtra("Username:", loggedUser);
+                        searchToDetails.putExtra("Team clicked:", teamClicked);
+
+                        startActivity(searchToDetails);
+                    }
+                });
             }
         });
     }
