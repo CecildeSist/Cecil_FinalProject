@@ -754,7 +754,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public void updateRev(Review oldRev, Review newRev) {
+    public void updateRev(Integer newRevScore, Integer teamID, String uR) {
         //tID means "team ID," uR means "userReviewing," rS means "reviewScore"
         //Step 1: Create select query
         /*String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
@@ -783,25 +783,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();*/
 
-        Integer oldReviewID = oldRev.getRevID();
 
-        Integer newRevScore = newRev.getRevScore();
-
-        //Create SQLite statement
-        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE reviewID = " + oldReviewID;
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectStatement, null);
 
-        if (cursor.moveToFirst()) {
-            String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + newRevScore + " WHERE reviewID = " + oldReviewID + ";";
-            db.execSQL(updateStatement);
-        }
+        String updateStatement = "UPDATE " + reviews_table_name + " SET reviewScore = " + newRevScore + " WHERE teamID = " + teamID + " AND userReviewing = '" + uR + "';";
+        db.execSQL(updateStatement);
 
         db.close();
     }
 
-    @SuppressLint("Range")
+    /*@SuppressLint("Range")
     public Review selectReviewClicked(String uR, Integer tID) {
         String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE teamID = " + tID + " AND userReviewing = '" + uR + "';";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -825,5 +817,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
         return oldReview;
-    }
+    }*/
 }
